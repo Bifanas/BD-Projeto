@@ -33,7 +33,7 @@ def dataNascimento ():
     return data
 
 # REGISTO DO CLIENTE
-# Os ciclos while servem para fazer a verificar se a variavel tem pelo menos 8 digitos
+# Os ciclos while servem para verificar se a variavel tem pelo menos 8 digitos
 def registo_cliente():
     us = input('Username: ')
     while (len(us) < 8):
