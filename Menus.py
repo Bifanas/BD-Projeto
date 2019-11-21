@@ -12,7 +12,7 @@ while x!='8':
         print("imprime 0",x)
     elif x == '1':
         print("imprime 1",x)
-    elif x == 2:
+    elif x == '2':
         print("imprime 2",x)
     else:
         print("imprime outra coisa", 'x')
