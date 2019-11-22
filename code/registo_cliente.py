@@ -5,35 +5,53 @@ cur = conn.cursor()
 
 
 # REGISTO DO CLIENTE
-# Os ciclos while servem para verificar se a variavel tem pelo menos 8 digitos
+# Os ciclos while servem para verificar se a variavel tem pelo menos 1 digito
 
 def registo_cliente():
-    us = input('Username: ')
-    while (len(us) < 8):
-        us = input('Insira o Username com pelo menos 8 digitos: ')
+    a = 1
+    b = 1
+    while (a or b):
+        a = 0
+        user = input('Username: ')
+        if(len(user) < 6):
+            print('Insira um Username com pelo menos 6 caracteres')
+            a = 1
 
-    cur.execute("SELECT count(username) FROM cliente WHERE username = %s;", (us,))
-    a = cur.fetchone()[0]
-    while (a != 0):
-        us = input('Insira outro Username: ')
-        cur.execute("SELECT count(username) FROM cliente WHERE username = %s;", (us,))
-        a = cur.fetchone()[0]
+        #verifica se o username ja foi escolhido por outro usuario
+        cur.execute("SELECT count(username) FROM cliente WHERE username = %s;", (user,))
+        cont = cur.fetchone()[0]
+        b = 0
+        if (cont != 0):
+            print('Insira outro Username')
+            b = 1
 
-    senha = input('Senha: ')
-    while (len(senha) < 8):
-        senha = input('Insira a Password com pelo menos 8 digitos: ')
+    a=1
+    while a:
+        senha = input('Password: ')
+        a=0
+        if (len(senha) < 8):
+            a=1
 
-    nome = input('Nome: ')
-    while (len(nome) < 8):
-        nome = input('Insira o Nome com pelo menos 8 digitos: ')
+    a=1
+    while a:
+        nome = input('Nome: ')
+        a=0
+        if (len(nome) < 1):
+            a=1
 
-    endereco = input('Endereco: ')
-    while (len(endereco) < 8):
-        endereco = input('Insira o Endereco com pelo menos 8 digitos: ')
+    a=1
+    while a:
+        endereco = input('Endereco: ')
+        a=0
+        if(len(endereco) < 1):
+            a=1
 
-    email = input('Email: ')
-    while (len(email) < 8):
-        email = input('Insira o Email com pelo menos 8 digitos: ')
+    a=1
+    while a:
+        email = input('Email: ')
+        a=0
+        if(len(email) < 1):
+            a=1
 
     data = funcaoData.data()
 
