@@ -1,39 +1,12 @@
 import psycopg2
+import funcaoData
 conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
 
-# FORMATACAO DA DATA dd-mm-aaaa
-def dataNascimento ():
-    d = 0
-    while(d<1 or d>31):
-        dia = input('Insira o dia de nascimento: ')
-        d = eval(dia)
-
-    if(d<10):
-        aux=dia
-        dia = '0' + aux
-
-    m = 0
-    while (m < 1 or m > 12):
-        mes = input('Insira o mes de nascimento: ')
-        m = eval(mes)
-
-    if(m<10):
-        aux = mes
-        mes = '0' + aux
-
-    ano = input('Ano de nascimento: ')
-    a = eval(ano)
-    while (a < 1900):
-        ano = input('Ano de nascimento: ')
-        a = eval(ano)
-
-    data = dia + '-'+ mes + '-' + ano
-
-    return data
 
 # REGISTO DO CLIENTE
 # Os ciclos while servem para verificar se a variavel tem pelo menos 8 digitos
+
 def registo_cliente():
     us = input('Username: ')
     while (len(us) < 8):
@@ -62,10 +35,7 @@ def registo_cliente():
     while (len(email) < 8):
         email = input('Insira o Email com pelo menos 8 digitos: ')
 
-    data = dataNascimento()
+    data = funcaoData.data()
 
     cur.execute("INSERT INTO cliente values (%s,%s,%s,%s,%s,%s,20)", (us, senha, nome, email, endereco, data))
     conn.commit()
-
-cur.close()
-conn.close()
