@@ -55,5 +55,5 @@ def registo_cliente():
 
     data = funcaoData.data()
 
-    cur.execute("INSERT INTO cliente values (%s,%s,%s,%s,%s,%s,20)", (us, senha, nome, email, endereco, data))
+    cur.execute("INSERT INTO cliente values (%s,%s,%s,%s,%s,%s,20)", (user, senha, nome, email, endereco, data))
     conn.commit()
