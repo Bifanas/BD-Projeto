@@ -11,12 +11,12 @@ def adicionar_album():
 
     # Pede que digite o albumID do album e verifica se este ja existe na base de dados
     albumID = eval(input("AlbumID: "))
-    cur.execute("SELECT count(albumid) FROM album WHERE username = %s;", (albumID,))
+    cur.execute("SELECT count(albumid) FROM album WHERE albumid = %s;", (albumID,))
     cont = cur.fetchone()[0]
 
     while (cont != 0):
         albumID = eval(input('Insira outro albumID: '))
-        cur.execute("SELECT count(albumid) FROM album WHERE username = %s;", (albumID,))
+        cur.execute("SELECT count(albumid) FROM album WHERE albumid = %s;", (albumID,))
         cont = cur.fetchone()[0]
 
     a = 1
@@ -38,7 +38,7 @@ def adicionar_album():
 
     Preco = eval(input("Preco: "))
 
-    cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s)", (albumID, Nome, Tempo, data, Stock, Preco))
+    cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s,0)", (albumID, Nome, Tempo, data, Stock, Preco))
     conn.commit()
 
     a = 1
@@ -72,3 +72,5 @@ def adicionar_album():
             a = 0
 
 
+
+adicionar_album()

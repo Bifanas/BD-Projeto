@@ -35,12 +35,12 @@ def adicionar_musica():
 # ADICIONA UM ARTISTA E RETORNA SEU ID
 def adicionar_artista():
     artistaID = eval(input("ArtistaID: "))
-    cur.execute("SELECT count(musicaid) FROM album WHERE username = %s;", (artistaID,))
+    cur.execute("SELECT count(musicaid) FROM album WHERE artistaid = %s;", (artistaID,))
     cont = cur.fetchone()[0]
 
     while (cont != 0):
         artistaID = eval(input('Insira outro artistaID: '))
-        cur.execute("SELECT count(artistaid) FROM album WHERE username = %s;", (artistaID,))
+        cur.execute("SELECT count(artistaid) FROM album WHERE artistaid = %s;", (artistaID,))
         cont = cur.fetchone()[0]
 
     a = 1
@@ -56,12 +56,12 @@ def adicionar_artista():
 # ADICIONA UM GENERO E RETORNA SEU ID
 def adicionar_genero():
     generoID = eval(input("GeneroID: "))
-    cur.execute("SELECT count(generoid) FROM album WHERE username = %s;", (generoID,))
+    cur.execute("SELECT count(generoid) FROM album WHERE generoid = %s;", (generoID,))
     cont = cur.fetchone()[0]
 
     while (cont != 0):
         generoID = eval(input('Insira outro generoID: '))
-        cur.execute("SELECT count(generoid) FROM album WHERE username = %s;", (generoID,))
+        cur.execute("SELECT count(generoid) FROM album WHERE generoid = %s;", (generoID,))
         cont = cur.fetchone()[0]
 
     a = 1
