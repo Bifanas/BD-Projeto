@@ -1,1 +1,137 @@
-{"ENTITY_ID":27,"tables":[{"id":"f67909fb-20b5-4523-964f-a45065acaf2a","position":{"x":190,"y":-285},"data":{"table_name":"Administrador","fields":[{"fieldName":"administradorID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Password","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Nome","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Telefone","fieldType":2,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Email","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false}],"next_id":5,"checkName":[],"checkCondition":[]}},{"id":"469b0c14-984a-407a-88cb-97dfbacea072","position":{"x":191,"y":-75},"data":{"table_name":"Album","fields":[{"fieldName":"albumID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Nome","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Tempo","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Data","fieldType":10,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Stock","fieldType":2,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Preco","fieldType":4,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["8"],"isAutoIncrement":false}],"next_id":12,"checkName":[],"checkCondition":[]}},{"id":"45e2023b-eced-4546-a369-1516df5c9032","position":{"x":-331,"y":135},"data":{"table_name":"Artista","fields":[{"fieldName":"artistaID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Nome_Artista","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false}],"next_id":5,"checkName":[],"checkCondition":[]}},{"id":"963896bf-fe92-40eb-b724-fb313a5f6212","position":{"x":626,"y":72},"data":{"table_name":"Cliente","fields":[{"fieldName":"Username","fieldType":10,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Password","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Nome","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Email","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Data_Nascimento","fieldType":10,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Endereco","fieldType":10,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Saldo","fieldType":4,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["8"],"isAutoIncrement":false}],"next_id":9,"checkName":[],"checkCondition":[]}},{"id":"e2044103-c20f-4d8a-84e3-b4310644e8c1","position":{"x":610,"y":-270},"data":{"table_name":"Notificacao","fields":[{"fieldName":"mensagemID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Mensagem","fieldType":10,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Data","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false}],"next_id":6,"checkName":[],"checkCondition":[]}},{"id":"4ae66daa-be4d-4f70-b9d4-5ea5be0471c1","position":{"x":192,"y":345},"data":{"table_name":"Pedido","fields":[{"fieldName":"albumID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Nome_Album","fieldType":10,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Valor_Album","fieldType":4,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["8"],"isAutoIncrement":false}],"next_id":8,"checkName":[],"checkCondition":[]}},{"id":"472ac64e-6deb-4b41-a030-e493480f383c","position":{"x":608,"y":339},"data":{"table_name":"Historico C","fields":[{"fieldName":"pedidoID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Preco","fieldType":4,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["8"],"isAutoIncrement":false},{"fieldName":"Data_de_Compra","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false}],"next_id":4,"checkName":[],"checkCondition":[]}},{"id":"ca7d9cb2-7eaa-4655-bd2e-e28871576b3d","position":{"x":-225,"y":332},"data":{"table_name":"Musica","fields":[{"fieldName":"musicaID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Nome_musica","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false},{"fieldName":"Tempo","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false}],"next_id":5,"checkName":[],"checkCondition":[]}},{"id":"f539088b-d920-4866-819f-3461a38067e1","position":{"x":-334,"y":-43},"data":{"table_name":"Genero","fields":[{"fieldName":"generoID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Tipo_genero","fieldType":10,"isPK":false,"isNotNull":true,"isUnique":false,"defaultValue":"","args":["512"],"isAutoIncrement":false}],"next_id":2,"checkName":[],"checkCondition":[]}},{"id":"8ee4ad44-869a-4ab0-b989-38d9fe84a09f","position":{"x":-337,"y":-276},"data":{"table_name":"Historico_A","fields":[{"fieldName":"AlbumID","fieldType":2,"isPK":true,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false},{"fieldName":"Preco","fieldType":4,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":["8"],"isAutoIncrement":false},{"fieldName":"Quantidade","fieldType":2,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false}],"next_id":3,"checkName":[],"checkCondition":[]}},{"id":"13457e84-49ad-4038-b212-172a893f3540","position":{"x":611,"y":-91},"data":{"table_name":"c_entrada","fields":[{"fieldName":"Mensagem_Lida","fieldType":0,"isPK":false,"isNotNull":false,"isUnique":false,"defaultValue":"","args":"","isAutoIncrement":false}],"next_id":1,"checkName":[],"checkCondition":[]}}],"links":[{"source":"963896bf-fe92-40eb-b724-fb313a5f6212","target":"472ac64e-6deb-4b41-a030-e493480f383c","order":"normal","sourceCard":"1:1","targetCard":"0:n","label":"ve","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"e2044103-c20f-4d8a-84e3-b4310644e8c1","target":"f67909fb-20b5-4523-964f-a45065acaf2a","order":"normal","sourceCard":"0:n","targetCard":"1:1","label":"envia","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"469b0c14-984a-407a-88cb-97dfbacea072","target":"f539088b-d920-4866-819f-3461a38067e1","order":"normal","sourceCard":"0:n","targetCard":"1:n","label":"tem","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"ca7d9cb2-7eaa-4655-bd2e-e28871576b3d","target":"469b0c14-984a-407a-88cb-97dfbacea072","order":"normal","sourceCard":"1:n","targetCard":"1:n","label":"tem","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"45e2023b-eced-4546-a369-1516df5c9032","target":"469b0c14-984a-407a-88cb-97dfbacea072","order":"normal","sourceCard":"1:n","targetCard":"1:n","label":"tem","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"963896bf-fe92-40eb-b724-fb313a5f6212","target":"4ae66daa-be4d-4f70-b9d4-5ea5be0471c1","order":"normal","sourceCard":"1:1","targetCard":"0:n","label":"tem","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"8ee4ad44-869a-4ab0-b989-38d9fe84a09f","target":"469b0c14-984a-407a-88cb-97dfbacea072","order":"normal","sourceCard":"1:1","targetCard":"0:n","label":"tem","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"4ae66daa-be4d-4f70-b9d4-5ea5be0471c1","target":"472ac64e-6deb-4b41-a030-e493480f383c","order":"normal","sourceCard":"0:n","targetCard":"1:1","label":"salva","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"4ae66daa-be4d-4f70-b9d4-5ea5be0471c1","target":"469b0c14-984a-407a-88cb-97dfbacea072","order":"normal","sourceCard":"0:n","targetCard":"1:n","label":"tem","hierType":null,"sourceisweak":false,"targetisweak":false},{"source":"963896bf-fe92-40eb-b724-fb313a5f6212","target":"13457e84-49ad-4038-b212-172a893f3540","order":"normal","sourceCard":"1:1","targetCard":"0:n","label":"le","hierType":null,"sourceisweak":false,"targetisweak":true},{"source":"e2044103-c20f-4d8a-84e3-b4310644e8c1","target":"13457e84-49ad-4038-b212-172a893f3540","order":"normal","sourceCard":"1:1","targetCard":"0:n","label":"le","hierType":null,"sourceisweak":false,"targetisweak":true},{"source":"f67909fb-20b5-4523-964f-a45065acaf2a","target":"469b0c14-984a-407a-88cb-97dfbacea072","order":"normal","sourceCard":"1:n","targetCard":"0:n","label":"altera","hierType":null,"sourceisweak":false,"targetisweak":false}],"normalization":1,"database":0}
+CREATE TABLE administrador (
+	administradorid INTEGER,
+	password	 VARCHAR(512) NOT NULL,
+	nome		 VARCHAR(512) NOT NULL,
+	telefone	 INTEGER NOT NULL,
+	email		 VARCHAR(512) NOT NULL,
+	PRIMARY KEY(administradorid)
+);
+
+CREATE TABLE album (
+	albumid INTEGER,
+	nome	 VARCHAR(512) NOT NULL,
+	tempo	 VARCHAR(512) NOT NULL,
+	data	 VARCHAR(512),
+	stock	 INTEGER,
+	preco	 FLOAT(8),
+	PRIMARY KEY(albumid)
+);
+
+CREATE TABLE artista (
+	artistaid	 INTEGER,
+	nome_artista VARCHAR(512) NOT NULL,
+	PRIMARY KEY(artistaid)
+);
+
+CREATE TABLE cliente (
+	username	 VARCHAR(512),
+	password	 VARCHAR(512) NOT NULL,
+	nome		 VARCHAR(512) NOT NULL,
+	email		 VARCHAR(512) NOT NULL,
+	data_nascimento VARCHAR(512),
+	endereco	 VARCHAR(512),
+	saldo		 FLOAT(8),
+	PRIMARY KEY(username)
+);
+
+CREATE TABLE notificacao (
+	mensagemid			 INTEGER,
+	mensagem			 VARCHAR(512),
+	data				 VARCHAR(512) NOT NULL,
+	administrador_administradorid INTEGER NOT NULL,
+	PRIMARY KEY(mensagemid)
+);
+
+CREATE TABLE pedido (
+	albumid		 INTEGER,
+	nome_album		 VARCHAR(512),
+	valor_album		 FLOAT(8),
+	historico_c_pedidoid INTEGER NOT NULL,
+	cliente_username	 VARCHAR(512) NOT NULL,
+	PRIMARY KEY(albumid)
+);
+
+CREATE TABLE historico_c (
+	pedidoid	 INTEGER,
+	preco		 FLOAT(8),
+	data_de_compra	 VARCHAR(512) NOT NULL,
+	cliente_username VARCHAR(512) NOT NULL,
+	PRIMARY KEY(pedidoid)
+);
+
+CREATE TABLE musica (
+	musicaid	 INTEGER,
+	nome_musica VARCHAR(512) NOT NULL,
+	tempo	 VARCHAR(512) NOT NULL,
+	PRIMARY KEY(musicaid)
+);
+
+CREATE TABLE genero (
+	tipo_genero VARCHAR(512) NOT NULL,
+	PRIMARY KEY(tipo_genero)
+);
+
+CREATE TABLE historico_a (
+	preco	 FLOAT(8),
+	quantidade INTEGER
+);
+
+CREATE TABLE c_entrada (
+	mensagem_lida		 BOOL,
+	notificacao_mensagemid INTEGER,
+	cliente_username	 VARCHAR(512),
+	PRIMARY KEY(notificacao_mensagemid,cliente_username)
+);
+
+CREATE TABLE administrador_album (
+	administrador_administradorid INTEGER,
+	album_albumid		 INTEGER,
+	PRIMARY KEY(administrador_administradorid,album_albumid)
+);
+
+CREATE TABLE pedido_album (
+	pedido_albumid INTEGER,
+	album_albumid	 INTEGER,
+	PRIMARY KEY(pedido_albumid,album_albumid)
+);
+
+CREATE TABLE historico_a_album (
+	album_albumid INTEGER,
+	PRIMARY KEY(album_albumid)
+);
+
+CREATE TABLE artista_album (
+	artista_artistaid INTEGER,
+	album_albumid	 INTEGER,
+	PRIMARY KEY(artista_artistaid,album_albumid)
+);
+
+CREATE TABLE musica_album (
+	musica_musicaid INTEGER,
+	album_albumid	 INTEGER,
+	PRIMARY KEY(musica_musicaid,album_albumid)
+);
+
+CREATE TABLE album_genero (
+	album_albumid	 INTEGER,
+	genero_tipo_genero VARCHAR(512),
+	PRIMARY KEY(album_albumid,genero_tipo_genero)
+);
+
+ALTER TABLE notificacao ADD CONSTRAINT notificacao_fk1 FOREIGN KEY (administrador_administradorid) REFERENCES administrador(administradorid);
+ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (historico_c_pedidoid) REFERENCES historico_c(pedidoid);
+ALTER TABLE pedido ADD CONSTRAINT pedido_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE historico_c ADD CONSTRAINT historico_c_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk1 FOREIGN KEY (notificacao_mensagemid) REFERENCES notificacao(mensagemid);
+ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk1 FOREIGN KEY (administrador_administradorid) REFERENCES administrador(administradorid);
+ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
+ALTER TABLE pedido_album ADD CONSTRAINT pedido_album_fk1 FOREIGN KEY (pedido_albumid) REFERENCES pedido(albumid);
+ALTER TABLE pedido_album ADD CONSTRAINT pedido_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
+ALTER TABLE historico_a_album ADD CONSTRAINT historico_a_album_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
+ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk1 FOREIGN KEY (artista_artistaid) REFERENCES artista(artistaid);
+ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
+ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk1 FOREIGN KEY (musica_musicaid) REFERENCES musica(musicaid);
+ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
+ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
+ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk2 FOREIGN KEY (genero_tipo_genero) REFERENCES genero(tipo_genero);
