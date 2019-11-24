@@ -45,18 +45,19 @@ CREATE TABLE notificacao (
 CREATE TABLE pedido (
 	albumid		 INTEGER,
 	nome_album		 VARCHAR(512),
-	valor_album		 FLOAT(8),
-	historico_c_pedidoid INTEGER NOT NULL,
+	valor_album	 FLOAT(8),
+	historico_c_albumid INTEGER NOT NULL,
 	cliente_username	 VARCHAR(512) NOT NULL,
 	PRIMARY KEY(albumid)
 );
 
 CREATE TABLE historico_c (
-	pedidoid	 INTEGER,
+	albumid		 INTEGER,
+	nome_album	 VARCHAR(512),
 	preco		 FLOAT(8),
 	data_de_compra	 VARCHAR(512) NOT NULL,
 	cliente_username VARCHAR(512) NOT NULL,
-	PRIMARY KEY(pedidoid)
+	PRIMARY KEY(albumid)
 );
 
 CREATE TABLE musica (
@@ -115,7 +116,7 @@ CREATE TABLE album_genero (
 );
 
 ALTER TABLE notificacao ADD CONSTRAINT notificacao_fk1 FOREIGN KEY (administrador_administradorid) REFERENCES administrador(administradorid);
-ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (historico_c_pedidoid) REFERENCES historico_c(pedidoid);
+ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (historico_c_albumid) REFERENCES historico_c(albumid);
 ALTER TABLE pedido ADD CONSTRAINT pedido_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
 ALTER TABLE historico_c ADD CONSTRAINT historico_c_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
 ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
@@ -131,3 +132,5 @@ ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk1 FOREIGN KEY (musica_mus
 ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
 ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
 ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk2 FOREIGN KEY (genero_tipo_genero) REFERENCES genero(tipo_genero);
+
+
