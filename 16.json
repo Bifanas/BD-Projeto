@@ -73,7 +73,8 @@ CREATE TABLE genero (
 
 CREATE TABLE historico_a (
 	preco	 FLOAT(8),
-	quantidade INTEGER
+	quantidade	 INTEGER,
+	album_albumid INTEGER NOT NULL
 );
 
 CREATE TABLE c_entrada (
@@ -93,11 +94,6 @@ CREATE TABLE pedido_album (
 	pedido_albumid INTEGER,
 	album_albumid	 INTEGER,
 	PRIMARY KEY(pedido_albumid,album_albumid)
-);
-
-CREATE TABLE historico_a_album (
-	album_albumid INTEGER,
-	PRIMARY KEY(album_albumid)
 );
 
 CREATE TABLE artista_album (
@@ -122,13 +118,13 @@ ALTER TABLE notificacao ADD CONSTRAINT notificacao_fk1 FOREIGN KEY (administrado
 ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (historico_c_pedidoid) REFERENCES historico_c(pedidoid);
 ALTER TABLE pedido ADD CONSTRAINT pedido_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
 ALTER TABLE historico_c ADD CONSTRAINT historico_c_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
 ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk1 FOREIGN KEY (notificacao_mensagemid) REFERENCES notificacao(mensagemid);
 ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
 ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk1 FOREIGN KEY (administrador_administradorid) REFERENCES administrador(administradorid);
 ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
 ALTER TABLE pedido_album ADD CONSTRAINT pedido_album_fk1 FOREIGN KEY (pedido_albumid) REFERENCES pedido(albumid);
 ALTER TABLE pedido_album ADD CONSTRAINT pedido_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE historico_a_album ADD CONSTRAINT historico_a_album_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
 ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk1 FOREIGN KEY (artista_artistaid) REFERENCES artista(artistaid);
 ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
 ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk1 FOREIGN KEY (musica_musicaid) REFERENCES musica(musicaid);
