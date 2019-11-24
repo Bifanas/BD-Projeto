@@ -7,7 +7,5 @@ cur = conn.cursor()
 def visualiza():
     if True:
         cur.execute("SELECT * FROM album WHERE stock > 0;")
-        print(cur.fetchall())
-
-
-
+        for linha in cur.fetchall():
+            print(linha)
