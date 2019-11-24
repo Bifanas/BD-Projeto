@@ -15,16 +15,6 @@ def adicionar_album():
         cur.execute("SELECT count(albumid) FROM album WHERE albumid = %s;", (albumID,))
         cont = cur.fetchone()[0]
 
-        while (cont != 0):
-            albumID = eval(input('Insira outro albumID: '))
-            cur.execute("SELECT count(albumid) FROM album WHERE albumid = %s;", (albumID,))
-            cont = cur.fetchone()[0]
-
-        a = 1
-        while a:
-            Nome = input("Nome do Album: ")
-            if (len(Nome) != None):
-                a = 0
 
         a = 1
         while a:
@@ -39,6 +29,7 @@ def adicionar_album():
 
         Preco = eval(input("Preco: "))
 
-        cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s,0)", (albumID, Nome, Tempo, data, Stock, Preco))
+        cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s,%s)", (albumID, Nome, Tempo, data, Stock, Preco))
+        cur.execute("INSERT INTO historico_a values (%s,%s,%s)", (Preco, Stock, albumID))
         conn.commit()
 
