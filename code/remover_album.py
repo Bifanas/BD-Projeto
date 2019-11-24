@@ -2,6 +2,7 @@ import psycopg2
 conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
 
+
 # É solicitado ao adm que insira o nome do album que deseja remover.
 # É verificado se este album existe e caso não é pedido de novo o nome do album
 # Caso o album exista é verificado se este album ja foi comprado por algum cliente.
