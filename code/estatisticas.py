@@ -26,7 +26,7 @@ def func():
         for linha in cur.fetchall():
             print(linha)
 
-        cur.execute("SELECT DISTINCT artista count(*) FROM  GROUP BY ;")
+        cur.execute("SELECT DISTINCT artista, count(*) FROM artista_genero  GROUP BY ;")
         print("\nTOTAL DE DISCOS VENDIDOS POR ARTISTA: ")
         for linha in cur.fetchall():
             print(linha)
