@@ -19,9 +19,7 @@ def adicionar_album():
 
         print("Data de Lançamento:")
         data = funcaoData.data()
-
         Stock = eval(input("Quantidade em stock: "))
-
         Preco = eval(input("Preco: "))
 
         cur.execute("INSERT INTO album values (6,%s,%s,%s,%s,%s)", (nome, Tempo, data, Stock, Preco))
@@ -31,3 +29,4 @@ def adicionar_album():
         add_MGA.adicionar_musica()
         add_MGA.adicionar_genero()
         add_MGA.adicionar_artista()
+
