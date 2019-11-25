@@ -10,7 +10,7 @@ cur = conn.cursor()
 # É Pedido a data de lancamento, stock atual e o preco do album
 
 
-def adicionar_album():
+def func():
     a=1
     while a:
 
