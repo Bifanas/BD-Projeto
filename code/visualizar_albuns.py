@@ -4,8 +4,12 @@ cur = conn.cursor()
 
 # Mostra todos os albuns disponiveis em stock
 
-def visualiza():
-    if True:
+def func():
+    a = 1
+    while a:
         cur.execute("SELECT * FROM album WHERE stock > 0;")
         for linha in cur.fetchall():
             print(linha)
+
+        a = eval(input("Insere 0 para voltar: "))
+
