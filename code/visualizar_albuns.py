@@ -8,8 +8,12 @@ def func():
     a = 1
     while a:
         cur.execute("SELECT * FROM album WHERE stock > 0;")
+        print ("ID | NOME | DURACAO | DATA  | QUANT | STOCK")
+
         for linha in cur.fetchall():
             print(linha)
 
         a = eval(input("Insere 0 para voltar: "))
+
+func()
 
