@@ -22,7 +22,7 @@ while (True):
         usuario = tipo_de_usuario
 
         #-------------------------------------------------------------------------------------
-
+ 
         if (usuario == cliente)
 
                 #Menu principal Cliente
