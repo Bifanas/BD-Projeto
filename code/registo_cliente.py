@@ -13,7 +13,7 @@ def func():
     while (a or b):
         a = 0
         user = input('Username: ')
-        if(len(user) < 6):
+        if(len(user) < 0):
             print('Insira um Username com pelo menos 6 caracteres')
             a = 1
 
@@ -29,7 +29,7 @@ def func():
     while a:
         senha = input('Password: ')
         a=0
-        if (len(senha) < 8):
+        if (len(senha) < 0):
             a=1
 
     a=1
