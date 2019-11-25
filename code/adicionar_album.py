@@ -14,15 +14,8 @@ def adicionar_album():
     a=1
     while a:
 
-        while a:
-            nome = input("Digite o nome do novo album: ")
-            if (len(nome) != None):
-                a = 0
-
-        while a:
-            Tempo = input("Duracao do Album: ")
-            if (len(Tempo) != None):
-                a = 0
+        nome = input("Digite o nome do novo album: ")
+        Tempo = input("Duracao do Album: ")
 
         print("Data de Lançamento:")
         data = funcaoData.data()
@@ -31,7 +24,10 @@ def adicionar_album():
 
         Preco = eval(input("Preco: "))
 
-        cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s)", (nome, Tempo, data, Stock, Preco))
-        cur.execute("INSERT INTO historico_a values (%s,%s,%s)", (Preco, Stock, albumID))
+        cur.execute("INSERT INTO album values (6,%s,%s,%s,%s,%s)", (nome, Tempo, data, Stock, Preco))
+        cur.execute("INSERT INTO historico_a values (%s,%s,6)", (Preco, Stock))
         conn.commit()
 
+        add_MGA.adicionar_musica()
+        add_MGA.adicionar_genero()
+        add_MGA.adicionar_artista()
