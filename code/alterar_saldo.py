@@ -16,7 +16,7 @@ def func():
         if(cont == 0):
             print("Não existe cliente com este username.")
         else:
-            saldo = eval(input("Insira o novo valor do saldo: "))
+            saldo = eval(input("Insira o saldo: "))
             cur.execute("SELECT saldo FROM cliente WHERE username = %s;", (nome,))
             saldo_anterior = cur.fetchone()[0]
             s_atual = saldo + saldo_anterior
