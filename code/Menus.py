@@ -1,85 +1,104 @@
-#import funcoes
-#vai importar todas as funcoes do arquivo funcoes.py
+import registo_cliente
+import login
+import adicionar_album
+import alterar_saldo
+import corrigir_preco
+import estatisticas
+import remover_album
+import visualizar_albuns
+# vai importar todas as funcoes dos arquivos
 
-#Menu inicial
-#inicia o programa que fica ativo ate que o usuario feche-o
+# Menu inicial
+# inicia o programa que fica ativo ate que o usuario feche-o
 
-x = '0' #inicializa o valor de x
+x = '0'  # inicializa o valor de x
 
 while (True):
     print('1 - Registar-se\n2 - Login')
-    #mostra as opcoes
+    # mostra as opcoes
     x = input('\n')
     # Obtem a escolha do cliente
 
-    if x == '1': #Registar-se
-        print('funcoes.Registar()')
-    elif x == '2': #Login
-        print('funcoes.login()')
-        usuario = funcoes.login()
-        #A funcao login retorna o tipo de usuario
+    if x == '1':  # Registar-se
+        registo_cliente.func()
 
-        usuario = tipo_de_usuario
+    elif x == '2':  # Login
+        usuario = login.func()
+        # A funcao login retorna o tipo de usuario
+        # Retornar 1 para cliente e 0 para adm
+        # -------------------------------------------------------------------------------------
 
-        #-------------------------------------------------------------------------------------
- 
-        if (usuario == cliente)
+        if (usuario == 1):
 
-                #Menu principal Cliente
+            # Menu principal Cliente
 
-                x = '0' #inicializa o valor de x
-                while x!='5':
+            x = '0'  # inicializa o valor de x
+            while x != '5':
 
-                    print('1 - Carrinho\n2 - Pesquisar\n3 - Histórico de compras\n4 - Notificações\n5 - Logout')
-                    #Mostra as opcoes
-                    x = input('\n')
-                    #Obtem a escolha do cliente
+                print('1 - Carrinho\n2 - Pesquisar\n3 - Histórico de compras\n4 - Notificações\n5 - Logout')
+                # Mostra as opcoes
+                x = input('\n')
+                # Obtem a escolha do cliente
 
-                    if x == '1': #Carrinho
-                        print('Carrinho')
-                    elif x == '2': #Pesquisa
-                        print('Pesquisa')
-                    elif x == '3': #Historico de compras
-                        print('Historico de compras')
-                    elif x == '4': #Notificacao
-                        print('Notificacao')
-                    elif x == '5': #Logout
-                        print('Logout')
-                    else:
-                        print("Opcao nao valida")
+                if x == '1':  # Carrinho
+                    print('Carrinho')
+                elif x == '2':  # Pesquisa
+                    print('Pesquisa')
+                elif x == '3':  # Historico de compras
+                    print('Historico de compras')
+                elif x == '4':  # Notificacao
+                    print('Notificacao')
+                elif x == '5':  # Logout
+                    print('Logout')
+                else:
+                    print("Opcao nao valida")
 
-        #-------------------------------------------------------------------------------------
-        elif(usuario == administrador)
+        # -------------------------------------------------------------------------------------
+        elif (usuario == 0):
 
-                #Menu principla Admin
+            # Menu principla Admin
 
-                x = '0' #inicializa o valor de x
-                while x!='8':
+            x = '0'  # inicializa o valor de x
+            while x != '8':
 
-                    print('Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
-                    #Mostra as opcoes
-                    x = input('\n')
-                    # Obtem a escolha do cliente
+                print(
+                    'Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
+                # Mostra as opcoes
+                x = input('\n')
+                # Obtem a escolha do cliente
 
-                    if x == '1': #Adiciona Album
-                        print('Adiciona album')
-                    elif x == '2': #Visualiza albuns
-                        print('Visualiza albuns')
-                    elif x == '3': #Corrigir preco
-                        print('Corrigir preço')
-                    elif x == '4': #Remover album
-                        print('Remover album')
-                    elif x == '5': #Notificar
-                        print('Notificar')
-                    elif x == '6': #Estatisticas
-                        print('Estatisticas')
-                    elif x == '7': #Alterar saldo
-                        print('Alterar saldo')
-                    elif x == '8': #logout
-                        print("Logout")
-                    else:
-                        print("Opcao nao valida")
+                if x == '1':  # Adiciona Album
+                    print('Adiciona album')
+                    adicionar_album.func()
 
-        #-------------------------------------------------------------------------------------
+                elif x == '2':  # Visualiza albuns
+                    print('Visualiza albuns')
+                    visualizar_albuns.func()
+
+                elif x == '3':  # Corrigir preco
+                    print('Corrigir preço')
+                    corrigir_preco.func()
+
+                elif x == '4':  # Remover album
+                    print('Remover album')
+                    remover_album.func()
+
+                elif x == '5':  # Notificar
+                    print('Notificar')
+
+                elif x == '6':  # Estatisticas
+                    print('Estatisticas')
+                    estatisticas.func()
+
+                elif x == '7':  # Alterar saldo
+                    print('Alterar saldo')
+                    alterar_saldo.func()
+
+                elif x == '8':  # logout
+                    print("Logout")
+                else:
+                    print("Opcao nao valida")
+
+        # -------------------------------------------------------------------------------------
     else:
         print("Opcao nao valida")
