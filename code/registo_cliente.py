@@ -7,7 +7,7 @@ cur = conn.cursor()
 # REGISTO DO CLIENTE
 # Os ciclos while servem para verificar se a variavel tem pelo menos 1 digito
 
-def registo_cliente():
+def func():
     a = 1
     b = 1
     while (a or b):
