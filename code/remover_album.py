@@ -9,7 +9,7 @@ cur = conn.cursor()
 # Se nao foi comprado por nenhum cliente, entao é eliminado da base de dados.
 # Se ja foi comprado, aparece uma msg de erro.
 
-def remover_album():
+def func():
     a = 1
     while a:
         nome = input("Insira o Nome do album: ")
@@ -35,4 +35,4 @@ def remover_album():
         else:
             print("Não é possivel eliminar este album pois algum cliente já o comprou.")
 
-        a = eval(input("Digite 1 para retirar outro album: "))
+        a = eval(input("Insere 0 para voltar: "))
