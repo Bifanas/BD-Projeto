@@ -1,136 +1,131 @@
 CREATE TABLE administrador (
-	administradorid INTEGER,
-	password	 VARCHAR(512) NOT NULL,
-	nome		 VARCHAR(512) NOT NULL,
-	telefone	 INTEGER NOT NULL,
-	email		 VARCHAR(512) NOT NULL,
-	PRIMARY KEY(administradorid)
+	id	 serial,
+	email	 VARCHAR(512) UNIQUE NOT NULL,
+	password VARCHAR(512) NOT NULL,
+	nome	 VARCHAR(512) NOT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE album (
-	albumid INTEGER,
+	id	 serial,
 	nome	 VARCHAR(512) NOT NULL,
-	tempo	 VARCHAR(512) NOT NULL,
-	data	 VARCHAR(512),
+	duracao VARCHAR(512) NOT NULL,
+	ano	 INTEGER,
 	stock	 INTEGER,
 	preco	 FLOAT(8),
-	PRIMARY KEY(albumid)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE artista (
-	artistaid	 INTEGER,
-	nome_artista VARCHAR(512) NOT NULL,
-	PRIMARY KEY(artistaid)
+	id	 serial,
+	artista VARCHAR(512) NOT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE cliente (
 	username	 VARCHAR(512),
 	password	 VARCHAR(512) NOT NULL,
 	nome		 VARCHAR(512) NOT NULL,
-	email		 VARCHAR(512) NOT NULL,
+	email		 VARCHAR(512) UNIQUE NOT NULL,
 	data_nascimento VARCHAR(512),
-	endereco	 VARCHAR(512),
 	saldo		 FLOAT(8),
 	PRIMARY KEY(username)
 );
 
 CREATE TABLE notificacao (
-	mensagemid			 INTEGER,
-	mensagem			 VARCHAR(512),
-	data				 VARCHAR(512) NOT NULL,
-	administrador_administradorid INTEGER NOT NULL,
-	PRIMARY KEY(mensagemid)
+	id		 serial,
+	mensagem	 VARCHAR(512),
+	data		 TIMESTAMP NOT NULL,
+	administrador_id INTEGER NOT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE pedido (
-	albumid		 INTEGER,
-	nome_album		 VARCHAR(512),
-	valor_album	 FLOAT(8),
-	historico_c_albumid INTEGER NOT NULL,
-	cliente_username	 VARCHAR(512) NOT NULL,
-	PRIMARY KEY(albumid)
+	cliente_username VARCHAR(512),
+	album_id	 INTEGER,
+	PRIMARY KEY(cliente_username,album_id)
 );
 
 CREATE TABLE historico_c (
-	albumid		 INTEGER,
-	nome_album	 VARCHAR(512),
-	preco		 FLOAT(8),
-	data_de_compra	 VARCHAR(512) NOT NULL,
+	id		 serial,
+	data_de_compra	 TIMESTAMP NOT NULL,
 	cliente_username VARCHAR(512) NOT NULL,
-	PRIMARY KEY(albumid)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE musica (
-	musicaid	 INTEGER,
-	nome_musica VARCHAR(512) NOT NULL,
-	tempo	 VARCHAR(512) NOT NULL,
-	PRIMARY KEY(musicaid)
+	id	 serial,
+	musica	 VARCHAR(512) NOT NULL,
+	duracao VARCHAR(512) NOT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE genero (
+	id		 serial,
 	tipo_genero VARCHAR(512) NOT NULL,
-	PRIMARY KEY(tipo_genero)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE historico_a (
-	preco	 FLOAT(8),
-	quantidade	 INTEGER,
-	album_albumid INTEGER NOT NULL
+	preco		 FLOAT(8),
+	data		 TIMESTAMP,
+	administrador_id INTEGER NOT NULL,
+	album_id	 INTEGER NOT NULL
 );
 
 CREATE TABLE c_entrada (
-	mensagem_lida		 BOOL,
-	notificacao_mensagemid INTEGER,
-	cliente_username	 VARCHAR(512),
-	PRIMARY KEY(notificacao_mensagemid,cliente_username)
+	mensagem_lida	 BOOL,
+	notificacao_id	 INTEGER,
+	cliente_username VARCHAR(512),
+	PRIMARY KEY(notificacao_id,cliente_username)
+);
+
+CREATE TABLE historico_c_album (
+	historico_c_id INTEGER,
+	album_id	 INTEGER,
+	PRIMARY KEY(historico_c_id,album_id)
 );
 
 CREATE TABLE administrador_album (
-	administrador_administradorid INTEGER,
-	album_albumid		 INTEGER,
-	PRIMARY KEY(administrador_administradorid,album_albumid)
-);
-
-CREATE TABLE pedido_album (
-	pedido_albumid INTEGER,
-	album_albumid	 INTEGER,
-	PRIMARY KEY(pedido_albumid,album_albumid)
+	administrador_id INTEGER,
+	album_id	 INTEGER,
+	PRIMARY KEY(administrador_id,album_id)
 );
 
 CREATE TABLE artista_album (
-	artista_artistaid INTEGER,
-	album_albumid	 INTEGER,
-	PRIMARY KEY(artista_artistaid,album_albumid)
+	artista_id INTEGER,
+	album_id	 INTEGER,
+	PRIMARY KEY(artista_id,album_id)
 );
 
 CREATE TABLE musica_album (
-	musica_musicaid INTEGER,
-	album_albumid	 INTEGER,
-	PRIMARY KEY(musica_musicaid,album_albumid)
+	musica_id INTEGER,
+	album_id	 INTEGER,
+	PRIMARY KEY(musica_id,album_id)
 );
 
 CREATE TABLE album_genero (
-	album_albumid	 INTEGER,
-	genero_tipo_genero VARCHAR(512),
-	PRIMARY KEY(album_albumid,genero_tipo_genero)
+	album_id	 INTEGER,
+	genero_id INTEGER,
+	PRIMARY KEY(album_id,genero_id)
 );
 
-ALTER TABLE notificacao ADD CONSTRAINT notificacao_fk1 FOREIGN KEY (administrador_administradorid) REFERENCES administrador(administradorid);
-ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (historico_c_albumid) REFERENCES historico_c(albumid);
-ALTER TABLE pedido ADD CONSTRAINT pedido_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE notificacao ADD CONSTRAINT notificacao_fk1 FOREIGN KEY (administrador_id) REFERENCES administrador(id);
+ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE pedido ADD CONSTRAINT pedido_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
 ALTER TABLE historico_c ADD CONSTRAINT historico_c_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
-ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk1 FOREIGN KEY (notificacao_mensagemid) REFERENCES notificacao(mensagemid);
+ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk1 FOREIGN KEY (administrador_id) REFERENCES administrador(id);
+ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
+ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk1 FOREIGN KEY (notificacao_id) REFERENCES notificacao(id);
 ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
-ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk1 FOREIGN KEY (administrador_administradorid) REFERENCES administrador(administradorid);
-ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE pedido_album ADD CONSTRAINT pedido_album_fk1 FOREIGN KEY (pedido_albumid) REFERENCES pedido(albumid);
-ALTER TABLE pedido_album ADD CONSTRAINT pedido_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk1 FOREIGN KEY (artista_artistaid) REFERENCES artista(artistaid);
-ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk1 FOREIGN KEY (musica_musicaid) REFERENCES musica(musicaid);
-ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk2 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk1 FOREIGN KEY (album_albumid) REFERENCES album(albumid);
-ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk2 FOREIGN KEY (genero_tipo_genero) REFERENCES genero(tipo_genero);
-
+ALTER TABLE historico_c_album ADD CONSTRAINT historico_c_album_fk1 FOREIGN KEY (historico_c_id) REFERENCES historico_c(id);
+ALTER TABLE historico_c_album ADD CONSTRAINT historico_c_album_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
+ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk1 FOREIGN KEY (administrador_id) REFERENCES administrador(id);
+ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
+ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk1 FOREIGN KEY (artista_id) REFERENCES artista(id);
+ALTER TABLE artista_album ADD CONSTRAINT artista_album_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
+ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk1 FOREIGN KEY (musica_id) REFERENCES musica(id);
+ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
+ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk1 FOREIGN KEY (album_id) REFERENCES album(id);
+ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk2 FOREIGN KEY (genero_id) REFERENCES genero(id);
 
