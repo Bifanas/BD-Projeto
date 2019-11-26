@@ -28,7 +28,7 @@ while (True):
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
 
-        if (usuario == 1):
+        if (usuario == 2):
 
             # Menu principal Cliente
 

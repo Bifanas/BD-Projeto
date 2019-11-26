@@ -15,5 +15,3 @@ def func():
 
         a = eval(input("Insere 0 para voltar: "))
 
-func()
-
