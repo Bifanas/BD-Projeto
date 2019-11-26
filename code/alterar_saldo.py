@@ -1,12 +1,8 @@
-import psycopg2
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
-cur = conn.cursor()
-
 # É pedido o username do cliente e verifica se este está na base de dados.
 # Se nao estiver é mostrado uma mensagem de erro
 # Se existir este username é solicitado o novo valo do saldo do cliente, somado ao saldo do anterior e atualizado.
 
-def func():
+def func(conn, cur):
     a = 1
     while a != 0:
         nome = input("Insira o USERNAME do cliente: ")
@@ -25,3 +21,5 @@ def func():
             conn.commit()
 
         a = eval(input("Insere 0 para voltar: "))
+
+func(conn, cur)
