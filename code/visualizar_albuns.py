@@ -3,6 +3,9 @@ conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=p
 cur = conn.cursor()
 
 # Mostra todos os albuns disponiveis em stock
+def imprime(linha):
+    print('       '.join(map(str, linha)))
+
 
 def func():
     a = 1
@@ -11,7 +14,9 @@ def func():
         print ("ID | NOME | DURACAO | DATA  | QUANT | STOCK")
 
         for linha in cur.fetchall():
-            print(linha)
+            imprime(linha)
 
         a = eval(input("Insere 0 para voltar: "))
 
+
+func()
