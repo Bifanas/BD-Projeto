@@ -6,12 +6,19 @@ import corrigir_preco
 import estatisticas
 import remover_album
 import visualizar_albuns
+import datetime
+import psycopg2
 # vai importar todas as funcoes dos arquivos
+
+conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
+cur = conn.cursor()
+
 
 # Menu inicial
 # inicia o programa que fica ativo ate que o usuario feche-o
 
 x = '0'  # inicializa o valor de x
+datetime.datetime.now()
 
 while (True):
     print('1 - Registar-se\n2 - Login')
@@ -20,10 +27,10 @@ while (True):
     # Obtem a escolha do cliente
 
     if x == '1':  # Registar-se
-        registo_cliente.func()
+        registo_cliente.func(conn, cur)
 
     elif x == '2':  # Login
-        usuario = login.func()
+        usuario = login.func(conn, cur)
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
@@ -69,30 +76,30 @@ while (True):
 
                 if x == '1':  # Adiciona Album
                     print('Adiciona album')
-                    adicionar_album.func()
+                    adicionar_album.func(conn, cur)
 
                 elif x == '2':  # Visualiza albuns
                     print('Visualiza albuns')
-                    visualizar_albuns.func()
+                    visualizar_albuns.func(cur)
 
                 elif x == '3':  # Corrigir preco
                     print('Corrigir preço')
-                    corrigir_preco.func()
+                    corrigir_preco.func(conn, cur)
 
                 elif x == '4':  # Remover album
                     print('Remover album')
-                    remover_album.func()
+                    remover_album.func(conn, cur)
 
                 elif x == '5':  # Notificar
                     print('Notificar')
 
                 elif x == '6':  # Estatisticas
                     print('Estatisticas')
-                    estatisticas.func()
+                    estatisticas.func(cur)
 
                 elif x == '7':  # Alterar saldo
                     print('Alterar saldo')
-                    alterar_saldo.func()
+                    alterar_saldo.func(conn, cur)
 
                 elif x == '8':  # logout
                     print("Logout")
