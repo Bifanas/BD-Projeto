@@ -21,5 +21,3 @@ def func(conn, cur):
             conn.commit()
 
         a = eval(input("Insere 0 para voltar: "))
-
-func(conn, cur)
