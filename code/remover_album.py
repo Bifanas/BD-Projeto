@@ -8,27 +8,35 @@ cur = conn.cursor()
 # Caso o album exista é verificado se este album ja foi comprado por algum cliente.
 # Se nao foi comprado por nenhum cliente, entao é eliminado da base de dados.
 # Se ja foi comprado, aparece uma msg de erro.
+def imprime(linha):
+    print('       '.join(map(str, linha)))
 
-def func():
+def func(conn, cur):
     a = 1
     while a:
-        nome = input("Insira o Nome do album: ")
-        cur.execute("SELECT count(nome) FROM album WHERE nome = %s;", (nome,))
-        cont = cur.fetchone()[0]
+        q=0
+        nome = input("Insira o nome do album: ")
+        cur.execute("SELECT count(*) FROM album WHERE nome = %s GROUP BY nome;", (nome,))
+        q = cur.fetchone()[0]
+        if (q == 0):
+            print("Não existe album com este nome.")
 
-        while (cont == 0):  # VERIFICAR SE EXISTE UM ALBUM COM ESTE NOME
-            print("Nao existe um album com este nome.")
-            nome = input("Insira o Nome do album: ")
-            cur.execute("SELECT count(nome) FROM album WHERE nome = %s;", (nome,))
-            cont = cur.fetchone()[0]
+        elif(q > 1):
+            print("ID       NOME       PRECO")
+            cur.execute("SELECT id, nome, preco FROM album WHERE nome = %s ORDER BY id;", (nome,))
+            for linha in cur.fetchall():
+                imprime(linha)
+            id = eval(input("Insira o albumID: "))
 
-        cur.execute("SELECT albumid, nome FROM album WHERE nome = %s;", (nome,))
-        print(cur.fetchall())
+        else:
+            cur.execute("SELECT id FROM album WHERE nome = %s;", (nome,))
+            id = cur.fetchone()[0]
 
-        ID = eval(input("Insira o ID do album: "))
-        cur.execute("SELECT count(nome_album) FROM historico_c WHERE albumid = %s;", (ID,))
+        cont=0
+        cur.execute("SELECT count(*) FROM historico_c_album WHERE album_id = %s GROUP BY album_id;", (id,))
+        cont = str(cur.fetchone()[0])
+        print(cont)
 
-        cont = cur.fetchone()[0]
         if (cont == 0):
             cur.execute("DELETE FROM album WHERE albumid = %s;", (ID,))
             conn.commit()
