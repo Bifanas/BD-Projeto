@@ -1,15 +1,19 @@
 import psycopg2
 import funcaoData
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
-cur = conn.cursor()
-
 
 # REGISTO DO CLIENTE
-# Os ciclos while servem para verificar se a variavel tem pelo menos 1 digito
+# São pedidos ao usuario que insira seus dados como username, password, nome, email e data de nascimento
+# Para o username e o email é verificado se existe outro usuario que ja tenha inserido certo dado e tambem é verificado se o campo nao esta vazio
+# Para a senha e o nome so verifica se o campo nao está vazio
+# Para a data de nascimento é chamado a funcaoData que recolhe as informacoes e organiza no formato.
 
-def func():
+def func(conn,cur):
+    print("----------------------------------------------------------------------------------")
+    print("Registar-se")
+
     a = 1
     b = 1
+
     while (a or b):
         a = 0
         user = input('Username: ')
@@ -40,20 +44,23 @@ def func():
             a=1
 
     a=1
-    while a:
-        endereco = input('Endereco: ')
-        a=0
-        if(len(endereco) < 1):
-            a=1
-
-    a=1
-    while a:
+    b=1
+    while a or b:
         email = input('Email: ')
         a=0
         if(len(email) < 1):
             a=1
 
-    data = funcaoData.data()
+        cur.execute("SELECT count(username) FROM cliente WHERE email = %s;", (email,))
+        cont = cur.fetchone()[0]
 
-    cur.execute("INSERT INTO cliente values (%s,%s,%s,%s,%s,%s,20)", (user, senha, nome, email, endereco, data))
+        b = 0
+        if (cont != 0):
+            print('Insira outro email. ')
+            b = 1
+
+    data = funcaoData.data()
+    print("Cliente Registado.")
+    print("----------------------------------------------------------------------------------")
+    cur.execute("INSERT INTO cliente values (%s,%s,%s,%s,%s,20)", (user, senha, nome, email, data))
     conn.commit()
