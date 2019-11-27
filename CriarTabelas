@@ -56,7 +56,6 @@ CREATE TABLE historico_c (
 CREATE TABLE musica (
 	id	 serial,
 	musica	 VARCHAR(512) NOT NULL,
-	duracao VARCHAR(512) NOT NULL,
 	PRIMARY KEY(id)
 );
 
