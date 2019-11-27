@@ -8,7 +8,7 @@ def imprime(linha):
 def func(cur):
     a = 1
     while a:
-        cur.execute("SELECT * FROM album WHERE stock > 0;")
+        cur.execute("SELECT * FROM album WHERE stock > 0 ORDER BY ID;")
         print ("ID       NOME       DURACAO     DATA      STOCK    PRECO")
 
         for linha in cur.fetchall():
