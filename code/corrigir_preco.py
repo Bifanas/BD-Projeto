@@ -25,6 +25,9 @@ def func(conn, cur):
                 imprime(linha)
             id = eval(input("Insira o albumID: "))
 
+        else:
+            cur.execute("SELECT id FROM album WHERE nome = %s;", (nome,))
+            id = cur.fetchone()[0]
 
         preco = eval(input("Insira o novo preco: "))
         cur.execute("SELECT preco FROM album WHERE id = %s;", (id,))
