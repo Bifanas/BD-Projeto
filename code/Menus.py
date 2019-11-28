@@ -1,25 +1,24 @@
 import registo_cliente
 import login
 import adicionar_album
-import alterar_saldo
-import corrigir_preco
-import estatisticas
-import remover_album
 import visualizar_albuns
-import datetime
+import corrigir_preco
+import remover_album
+import estatisticas
+import notificacao
+import alterar_saldo
+
+
 import psycopg2
 # vai importar todas as funcoes dos arquivos
 
 conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
 
-
 # Menu inicial
 # inicia o programa que fica ativo ate que o usuario feche-o
 
 x = '0'  # inicializa o valor de x
-datetime.datetime.now()
-
 while (True):
     print('1 - Registar-se\n2 - Login')
     # mostra as opcoes
@@ -30,7 +29,9 @@ while (True):
         registo_cliente.func(conn, cur)
 
     elif x == '2':  # Login
-        usuario = login.func(conn, cur)
+        usuario = 0
+        id = 1
+        #usuario, id = login.func(cur)
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
@@ -41,23 +42,29 @@ while (True):
 
             x = '0'  # inicializa o valor de x
             while x != '5':
-
+                print(id)
                 print('1 - Carrinho\n2 - Pesquisar\n3 - Histórico de compras\n4 - Notificações\n5 - Logout')
                 # Mostra as opcoes
                 x = input('\n')
                 # Obtem a escolha do cliente
 
                 if x == '1':  # Carrinho
+                    print(id)
                     print('Carrinho')
                 elif x == '2':  # Pesquisa
+                    print(id)
                     print('Pesquisa')
                 elif x == '3':  # Historico de compras
+                    print(id)
                     print('Historico de compras')
                 elif x == '4':  # Notificacao
+                    print(id)
                     print('Notificacao')
                 elif x == '5':  # Logout
+                    print(id)
                     print('Logout')
                 else:
+                    print(id)
                     print("Opcao nao valida")
 
         # -------------------------------------------------------------------------------------
@@ -67,9 +74,7 @@ while (True):
 
             x = '0'  # inicializa o valor de x
             while x != '8':
-
-                print(
-                    'Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
+                print('Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
                 # Mostra as opcoes
                 x = input('\n')
                 # Obtem a escolha do cliente
@@ -84,7 +89,7 @@ while (True):
 
                 elif x == '3':  # Corrigir preco
                     print('Corrigir preço')
-                    corrigir_preco.func(conn, cur)
+                    corrigir_preco.func(conn, cur,id)
 
                 elif x == '4':  # Remover album
                     print('Remover album')
@@ -92,6 +97,7 @@ while (True):
 
                 elif x == '5':  # Notificar
                     print('Notificar')
+                    notificacao.func(conn, cur, id)
 
                 elif x == '6':  # Estatisticas
                     print('Estatisticas')
