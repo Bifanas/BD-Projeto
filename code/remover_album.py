@@ -7,10 +7,10 @@ def imprime(linha):
     print('       '.join(map(str, linha)))
 
 def func(conn, cur):
-    a = 1
+    a = '1'
     b = 1
     # Enquanto o adm nao inserir 0 para voltar ao menu ficará removendo album
-    while a:
+    while a != '0':
         # Enquanto o adm nao inserir o nome correto ficara pedindo o nome do album
         while b:
             q = 0
@@ -41,4 +41,4 @@ def func(conn, cur):
             conn.commit()
             b=0
 
-        a = eval(input("Insere 0 para voltar: "))
+        a = input("Insere 0 para voltar: ")

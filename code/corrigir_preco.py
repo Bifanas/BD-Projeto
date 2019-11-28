@@ -9,11 +9,11 @@ def imprime(linha):
     print('       '.join(map(str, linha)))
 
 def func(conn, cur,adm):
-    a = 1
+    a = '1'
     b = 1
 
     #Enquanto o adm nao inserir 0 para voltar ao menu ficará removendo album
-    while a != 0:
+    while a != '0':
 
         #Enquanto o adm nao inserir o nome correto ficara pedindo o nome do album
         while b != 0:
@@ -44,4 +44,4 @@ def func(conn, cur,adm):
 
         cur.execute("UPDATE album SET preco = %s WHERE id = %s;", (preco, id))
         conn.commit()
-        a = eval(input("Insere 0 para voltar: "))
+        a = input("Insere 0 para voltar: ")

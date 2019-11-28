@@ -6,8 +6,8 @@ import datetime
 
 
 def func(conn, cur):
-    a=1
-    while a!=0:
+    a= '1'
+    while a!= '0':
 
         nome = input("Digite o nome do novo album: ")
         duracao = input("Duracao do Album: ")
@@ -22,5 +22,5 @@ def func(conn, cur):
         add_MGA.adicionar_artista(conn, cur)
         add_MGA.adicionar_genero(conn, cur)
 
-        a = eval(input("Insere 0 para voltar: "))
+        a = input("Insere 0 para voltar: ")
         print("----------------------------------------------------------------------------------")

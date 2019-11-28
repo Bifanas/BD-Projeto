@@ -3,8 +3,8 @@
 # Se existir este username é solicitado o novo valo do saldo do cliente, somado ao saldo do anterior e atualizado.
 
 def func(conn, cur):
-    a = 1
-    while a != 0:
+    a = '1'
+    while a != '0':
         nome = input("Insira o USERNAME do cliente: ")
         cur.execute("SELECT count(nome) FROM cliente WHERE username = %s;", (nome,))
         cont = cur.fetchone()[0]
@@ -20,4 +20,4 @@ def func(conn, cur):
             cur.execute("UPDATE cliente SET saldo = %s WHERE username = %s;", (s_atual, nome))
             conn.commit()
 
-        a = eval(input("Insere 0 para voltar: "))
+        a = input("Insere 0 para voltar: ")
