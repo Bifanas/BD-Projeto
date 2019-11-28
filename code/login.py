@@ -1,59 +1,60 @@
-import psycopg2
+def func(cur):
+    a = 1
+    b = 1
+    while a:
+        print("----------------------------------------------------------------------------------")
+        print("Login")
 
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
-cur = conn.cursor()
+        while b:
+            email = input("\nEmail: ")
+            senha = input("Senha: ")
+
+            cur.execute("SELECT count(email) FROM administrador WHERE email = %s;", (email,))
+            a = cur.fetchone()
+
+            cur.execute("SELECT count(email) FROM cliente WHERE email = %s;", (email,))
+            c = cur.fetchone()
+            b=0
 
 
-def func():
-    c = 0
-    a = 0
-    while (c == 0 and a == 0):
+        if(a[0] == 1 ):
+            cur.execute("SELECT count(email) FROM administrador WHERE password = %s and email = %s;",(senha, email))
+            s = cur.fetchone()[0]
+            if (s == 0):
+                print("\nEmail ou Password incorretos.")
+                b=1
 
-        user = input("USERNAME: ")
-        senha = input("SENHA: ")
+            else:
+                b=0
+                cur.execute("SELECT id FROM administrador WHERE password = %s and email = %s;",(senha, email))
+                id = cur.fetchone()[0]
+                return (0, id)
 
-        aux = 0
 
-        cur.execute("SELECT count(*) FROM administrador WHERE email = %s GROUP BY email;", (user, ))
-        aux = cur.fetchone()[0]
-        print(aux)
+        elif(c[0] != 0):
+            cur.execute("SELECT count(email) FROM cliente WHERE password = %s and email = %s;", (senha, email))
+            t = cur.fetchone()[0]
 
-        if (aux == 1):
-            cur.execute("SELECT count(email) FROM administrador WHERE email = %s GROUP BY email;", (user,))
-            a = cur.fetchone()[0]
+            if (t == 0):
+                print("\nEmail ou Password incorretos.")
+                b=1
+
+            else:
+                b=0
+                cur.execute("SELECT nome FROM cliente WHERE password = %s and email = %s;",(senha, email))
+                id = cur.fetchone()[0]
+                return (1, id)
+
 
         else:
-            cur.execute("SELECT count(username) FROM cliente WHERE username = %s GROUP BY nome;", (user,))
-            c = cur.fetchone()[0]
+            print("Email ou PassWord incorretos.\n")
+
+    print("----------------------------------------------------------------------------------")
 
 
-        if (c == 0 and a == 0):
-            print("Username ou PassWord incorretos.")
 
 
-    if (a == 1):  # email do adm detectado
-        s = 0
-        while (s == 0):
-            cur.execute("SELECT count(password) FROM administrador WHERE password = %s and email = %s;", (senha, user))
-            s = cur.fetchone()[0]
-            if (s == 0):
-                print("Username ou Password incorretos.")
-                user = input("USERNAME: ")
-                senha = input("SENHA: ")
-            else:
-                print("ADM")
-                return 0
 
-    elif (c == 1):  # username do cliente detectado
-        s = 0
-        while (s == 0):
-            cur.execute("SELECT count(password) FROM cliente WHERE password = %s and username = %s;", (senha, user))
-            s = cur.fetchone()[0]
-            if (s == 0):
-                print("Username ou Password incorretos.")
-                user = input("USERNAME: ")
-                senha = input("SENHA: ")
-            else:
-                print("CLIENTE")
-                return 1
+
+
 
