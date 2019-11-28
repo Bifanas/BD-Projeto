@@ -1,4 +1,3 @@
-import psycopg2
 import funcaoData
 
 # REGISTO DO CLIENTE
@@ -10,7 +9,6 @@ import funcaoData
 def func(conn,cur):
     print("----------------------------------------------------------------------------------")
     print("Registar-se")
-
     a = 1
     b = 1
 
