@@ -1,4 +1,3 @@
-import psycopg2
 import add_MGA
 import datetime
 # ADICIONAR ALBUM À BASE DE DADOS
