@@ -1,6 +1,5 @@
 # FORMATACAO DA DATA:
 def data():
-
     # DIA: entra no ciclo e fica pedindo o dia de nascimento ate que este esteja entre 1 e 31
     #      no if verifica se o numero digitado comeca ou nao com 0
     #      se comecar com 0, verifica-se se existe um numero seguinte ao 0, caso exista este numero é registado. Se nao existir outro numero é dado que d é igual a 0 e recomeca o ciclo

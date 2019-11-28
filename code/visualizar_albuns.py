@@ -4,7 +4,6 @@
 def imprime(linha):
     print('       '.join(map(str, linha)))
 
-
 def func(cur):
     a = 1
     while a:

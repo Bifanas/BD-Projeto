@@ -1,5 +1,5 @@
 # É pedido o username do cliente e verifica se este está na base de dados.
-# Se nao estiver é mostrado uma mensagem de erro
+# Se nao estiver é mostrado uma mensagem de erro.
 # Se existir este username é solicitado o novo valo do saldo do cliente, somado ao saldo do anterior e atualizado.
 
 def func(conn, cur):
