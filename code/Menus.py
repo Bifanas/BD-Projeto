@@ -29,15 +29,12 @@ while (True):
         registo_cliente.func(conn, cur)
 
     elif x == '2':  # Login
-        usuario = 0
-        id = 1
-        #usuario, id = login.func(cur)
+        usuario, id = login.func(cur)
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
 
         if (usuario == 1):
-
             # Menu principal Cliente
 
             x = '0'  # inicializa o valor de x
