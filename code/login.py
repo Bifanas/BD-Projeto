@@ -42,8 +42,8 @@ def func(cur):
             else:
                 b=0
                 cur.execute("SELECT nome FROM cliente WHERE password = %s and email = %s;",(senha, email))
-                id = cur.fetchone()[0]
-                return (1, id)
+                nome = cur.fetchone()[0]
+                return (1, nome)
 
 
         else:
