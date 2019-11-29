@@ -23,13 +23,13 @@ CREATE TABLE artista (
 );
 
 CREATE TABLE cliente (
-	username	 VARCHAR(512),
-	password	 VARCHAR(512) NOT NULL,
+	id		 serial,
 	nome		 VARCHAR(512) NOT NULL,
+	password	 VARCHAR(512) NOT NULL,
 	email		 VARCHAR(512) UNIQUE NOT NULL,
 	data_nascimento VARCHAR(512),
 	saldo		 FLOAT(8),
-	PRIMARY KEY(username)
+	PRIMARY KEY(id)
 );
 
 CREATE TABLE notificacao (
@@ -41,26 +41,26 @@ CREATE TABLE notificacao (
 );
 
 CREATE TABLE pedido (
-	cliente_username VARCHAR(512),
-	album_id	 INTEGER,
-	PRIMARY KEY(cliente_username,album_id)
+	cliente_id INTEGER,
+	album_id	 serial,
+	PRIMARY KEY(cliente_id,album_id)
 );
 
 CREATE TABLE historico_c (
 	id		 serial,
-	data_de_compra	 TIMESTAMP NOT NULL,
-	cliente_username VARCHAR(512) NOT NULL,
+	data_de_compra TIMESTAMP NOT NULL,
+	cliente_id	 INTEGER NOT NULL,
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE musica (
 	id	 serial,
-	musica	 VARCHAR(512) NOT NULL,
+	musica VARCHAR(512) NOT NULL,
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE genero (
-	id		 serial,
+	id		serial,
 	tipo_genero VARCHAR(512) NOT NULL,
 	PRIMARY KEY(id)
 );
@@ -74,9 +74,9 @@ CREATE TABLE historico_a (
 
 CREATE TABLE c_entrada (
 	mensagem_lida	 BOOL,
-	notificacao_id	 INTEGER,
-	cliente_username VARCHAR(512),
-	PRIMARY KEY(notificacao_id,cliente_username)
+	notificacao_id INTEGER,
+	cliente_id	 INTEGER,
+	PRIMARY KEY(notificacao_id,cliente_id)
 );
 
 CREATE TABLE historico_c_album (
@@ -110,13 +110,13 @@ CREATE TABLE album_genero (
 );
 
 ALTER TABLE notificacao ADD CONSTRAINT notificacao_fk1 FOREIGN KEY (administrador_id) REFERENCES administrador(id);
-ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE pedido ADD CONSTRAINT pedido_fk1 FOREIGN KEY (cliente_id) REFERENCES cliente(id);
 ALTER TABLE pedido ADD CONSTRAINT pedido_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
-ALTER TABLE historico_c ADD CONSTRAINT historico_c_fk1 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE historico_c ADD CONSTRAINT historico_c_fk1 FOREIGN KEY (cliente_id) REFERENCES cliente(id);
 ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk1 FOREIGN KEY (administrador_id) REFERENCES administrador(id);
 ALTER TABLE historico_a ADD CONSTRAINT historico_a_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
 ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk1 FOREIGN KEY (notificacao_id) REFERENCES notificacao(id);
-ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk2 FOREIGN KEY (cliente_username) REFERENCES cliente(username);
+ALTER TABLE c_entrada ADD CONSTRAINT c_entrada_fk2 FOREIGN KEY (cliente_id) REFERENCES cliente(id);
 ALTER TABLE historico_c_album ADD CONSTRAINT historico_c_album_fk1 FOREIGN KEY (historico_c_id) REFERENCES historico_c(id);
 ALTER TABLE historico_c_album ADD CONSTRAINT historico_c_album_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
 ALTER TABLE administrador_album ADD CONSTRAINT administrador_album_fk1 FOREIGN KEY (administrador_id) REFERENCES administrador(id);
