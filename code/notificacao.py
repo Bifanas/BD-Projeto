@@ -11,4 +11,14 @@ def func(conn,cur,id):
         cur.execute("INSERT INTO notificacao (administrador_id, mensagem, data) values (%s,%s,%s);", (id, msg, data, ))
         conn.commit()
 
+        cur.execute("SELECT id FROM notificacao WHERE data = %s;", (data,))
+        idM = cur.fetchone()[0]
+
+        cur.execute("SELECT count(id) FROM cliente;")
+        ncliente = cur.fetchone()[0]
+
+        for i in range(1,ncliente+1):
+            cur.execute("INSERT INTO c_entrada values ('0',%s,%s);", (idM,i))
+            conn.commit()
+
         a = input("Insere 0 para voltar: ")
