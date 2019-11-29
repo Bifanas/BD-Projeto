@@ -48,6 +48,7 @@ def func(cur):
 
         else:
             print("Email ou PassWord incorretos.\n")
+            b=1
 
     print("----------------------------------------------------------------------------------")
 
