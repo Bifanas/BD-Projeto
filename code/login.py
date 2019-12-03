@@ -2,11 +2,10 @@ def func(cur):
     a = 1
     b = 1
     while a:
-        print("----------------------------------------------------------------------------------")
         print("Login")
 
         while b:
-            email = input("\nEmail: ")
+            email = input("Email: ")
             senha = input("Senha: ")
 
             cur.execute("SELECT count(email) FROM administrador WHERE email = %s;", (email,))
@@ -49,13 +48,3 @@ def func(cur):
         else:
             print("Email ou PassWord incorretos.\n")
             b=1
-
-    print("----------------------------------------------------------------------------------")
-
-
-
-
-
-
-
-
