@@ -1,5 +1,4 @@
 import add_MGA
-import datetime
 # ADICIONAR ALBUM À BASE DE DADOS
 # Verifica se o nome e o tempo nao sao nulos
 # É Pedido a data de lancamento, stock atual e o preco do album
@@ -23,4 +22,3 @@ def func(conn, cur):
         add_MGA.adicionar_genero(conn, cur)
 
         a = input("Insere 0 para voltar: ")
-        print("----------------------------------------------------------------------------------")
