@@ -1,20 +1,53 @@
+def imprime(linha):
+    print(' - '.join(map(str, linha)))
+
 # ADICIONA MUSICAS
 def adicionar_musica(conn,cur):
     a = '1'
     while a != '0':
-        Nome = input("Nome da Musica: ")
+        print ("\nJá existe uma musica do novo album registado?")
+        r = eval(input("1 - SIM\n2 - NAO\n"))
+        if(r == 1):
+            b=1
+            while b:
+                nome = input("Digite o nome da musica: ")
+                cur.execute("SELECT count(*) FROM musica WHERE musica = %s", (nome, ))
+                q = cur.fetchone()
+                if(q is None):
+                    print("Não existe musica com este nome.")
+                    b = 1
 
-        cur.execute("INSERT INTO musica (musica) values (%s)", (Nome, ))
-        conn.commit()
+                else:
+                    b=0
+                    cur.execute("SELECT id, musica FROM musica WHERE musica = %s;"(nome,))
+                    for linha in cur.fetchall():
+                        imprime(linha)
 
-        cur.execute("SELECT MAX(id) FROM album")
-        id_a = cur.fetchone()[0]
+                    n = input("Digite o ID da musica: ")
 
-        cur.execute("SELECT MAX(id) FROM musica")
-        id_m = cur.fetchone()[0]
+            cur.execute("SELECT MAX(id) FROM album")
+            id_a = cur.fetchone()[0]
 
-        cur.execute("INSERT INTO musica_album values (%s,%s)", (id_m,id_a))
-        conn.commit()
+            cur.execute("INSERT INTO musica_album values (%s,%s)", (n, id_a))
+            conn.commit()
+
+        elif(r == 2):
+            Nome = input("Nome da Musica: ")
+
+            cur.execute("INSERT INTO musica (musica) values (%s)", (Nome, ))
+            conn.commit()
+
+            cur.execute("SELECT MAX(id) FROM album")
+            id_a = cur.fetchone()[0]
+
+            cur.execute("SELECT MAX(id) FROM musica")
+            id_m = cur.fetchone()[0]
+
+            cur.execute("INSERT INTO musica_album values (%s,%s)", (id_m,id_a))
+            conn.commit()
+
+        else:
+            print("Opcao nao valida")
 
         a = input("Insere 0 para voltar: ")
 
@@ -23,18 +56,48 @@ def adicionar_musica(conn,cur):
 def adicionar_genero(conn,cur):
     a = '1'
     while a != '0':
-        tipo_genero = input("Nome do Genero: ")
-        cur.execute("INSERT INTO genero (tipo_genero) values (%s)", (tipo_genero))
-        conn.commit()
+        print("\nJá existe um genero do novo album registado?")
+        r = eval(input("1 - SIM\n2 - NAO\n"))
+        if (r == 1):
+            b = 1
+            while b:
+                nome = input("Digite o nome do genero: ")
+                cur.execute("SELECT count(*) FROM tipo_genero WHERE genero = %s GROUP BY tipo_genero", (nome,))
+                q = cur.fetchone()
+                if (q is None):
+                    print("Não existe genero com este nome.")
+                    b = 1
 
-        cur.execute("SELECT MAX(id) FROM album")
-        id_a = cur.fetchone()[0]
+                else:
+                    b = 0
+                    cur.execute("SELECT id, tipo_genero FROM genero WHERE tipo_genero = %s;"(nome, ))
+                    for linha in cur.fetchall():
+                        imprime(linha)
 
-        cur.execute("SELECT MAX(id) FROM genero")
-        id_g = cur.fetchone()[0]
+                    n = input("Digite o ID do genero: ")
 
-        cur.execute("INSERT INTO album_genero values (%s,%s)", (id_a, id_g))
-        conn.commit()
+            cur.execute("SELECT MAX(id) FROM album")
+            id_a = cur.fetchone()[0]
+
+            cur.execute("INSERT INTO album_genero values (%s,%s)", (n, id_a))
+            conn.commit()
+
+        elif (r == 2):
+            tipo_genero = input("Nome do Genero: ")
+            cur.execute("INSERT INTO genero (tipo_genero) values (%s)", (tipo_genero))
+            conn.commit()
+
+            cur.execute("SELECT MAX(id) FROM album")
+            id_a = cur.fetchone()[0]
+
+            cur.execute("SELECT MAX(id) FROM genero")
+            id_g = cur.fetchone()[0]
+
+            cur.execute("INSERT INTO album_genero values (%s,%s)", (id_a, id_g))
+            conn.commit()
+
+        else:
+            print("Opcao nao valida")
 
         a = input("Insere 0 para voltar: ")
 
@@ -43,17 +106,47 @@ def adicionar_genero(conn,cur):
 def adicionar_artista(conn, cur):
     a = '1'
     while a != '0':
-        Nome = input("Nome do Artista: ")
+        print("\nJá existe um artista do novo album registado?")
+        r = eval(input("1 - SIM\n2 - NAO\n"))
+        if (r == 1):
+            b = 1
+            while b:
+                nome = input("Digite o nome do artista: ")
+                cur.execute("SELECT count(*) FROM artista WHERE artista = %s GROUP BY artista", (nome,))
+                q = cur.fetchone()
+                if (q is None):
+                    print("Não existe artista com este nome.")
+                    b = 1
 
-        cur.execute("INSERT INTO artista (artista) values (%s)", (Nome,))
-        conn.commit()
+                else:
+                    b = 0
+                    cur.execute("SELECT id, artista FROM artista WHERE artista = %s;"(nome, ))
+                    for linha in cur.fetchall():
+                        imprime(linha)
 
-        cur.execute("SELECT MAX(id) FROM album")
-        id_a = cur.fetchone()[0]
+                    n = input("Digite o ID do artista: ")
 
-        cur.execute("SELECT MAX(id) FROM artista")
-        id_art = cur.fetchone()[0]
-        cur.execute("INSERT INTO artista_album values (%s,%s)", (id_art, id_a))
-        conn.commit()
+            cur.execute("SELECT MAX(id) FROM album")
+            id_a = cur.fetchone()[0]
+
+            cur.execute("INSERT INTO artista_album values (%s,%s)", (n, id_a))
+            conn.commit()
+
+        elif (r == 2):
+            Nome = input("Nome do Artista: ")
+
+            cur.execute("INSERT INTO artista (artista) values (%s)", (Nome,))
+            conn.commit()
+
+            cur.execute("SELECT MAX(id) FROM album")
+            id_a = cur.fetchone()[0]
+
+            cur.execute("SELECT MAX(id) FROM artista")
+            id_art = cur.fetchone()[0]
+            cur.execute("INSERT INTO artista_album values (%s,%s)", (id_art, id_a))
+            conn.commit()
+
+        else:
+            print("Opcao nao valida")
 
         a = input("Insere 0 para voltar: ")
