@@ -1,4 +1,6 @@
-import add_MGA
+import add_musica
+import add_genero
+import add_artista
 
 # ADICIONAR ALBUM À BASE DE DADOS
 def func(conn, cur):
@@ -19,8 +21,6 @@ def func(conn, cur):
         conn.commit()
 
         # FUNCAO QUE PERMITE ADICIONAR MUSICA, ARTISTA E GENERO
-        add_MGA.adicionar_musica(conn, cur)
-        add_MGA.adicionar_artista(conn, cur)
-        add_MGA.adicionar_genero(conn, cur)
-
-        a = input("Insere 0 para voltar: ")
+        add_musica.adicionar_musica(conn, cur)
+        add_genero.adicionar_genero(conn, cur)
+        add_artista.adicionar_artista(conn, cur)
