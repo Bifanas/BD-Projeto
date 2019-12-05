@@ -4,7 +4,7 @@ def imprime(linha):
 def func(cur):
     a = '1'
     while a != '0':
-        cur.execute("SELECT count(username) FROM cliente;")
+        cur.execute("SELECT count(*) FROM cliente;")
         a = cur.fetchone()[0]
         print("\nTOTAL DE CLIENTES: ", a)
 
@@ -24,13 +24,14 @@ def func(cur):
         e = cur.fetchone()[0]
         print("TOTAL DE ARTISTAS: ", e)
 
+        #AJUDA
         cur.execute("SELECT nome FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
         print("ALBUNS MAIS VENDIDOS: ")
         for linha in cur.fetchall():
             imprime(linha)
 
-
-        cur.execute("SELECT tipo_genero, stock FROM genero, album, album_genero WHERE album.id = album_genero.album_id and genero.id = album_genero.genero_id ORDER BY stock DESC;")
+        #AJUDA
+        cur.execute("SELECT distinct tipo_genero, stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id;")
         print("TOTAL DE DISCOS POR GENERO MUSICAL: ")
         for linha in cur.fetchall():
             imprime(linha)
