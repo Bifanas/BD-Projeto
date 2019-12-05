@@ -31,7 +31,7 @@ def func(cur):
         print("TOTAL DE ARTISTAS: ", e)
 
         #Verificar se funciona
-        cur.execute("select sum(stock) from album group by genero")
+        cur.execute("SELECT distinct tipo_genero, genero_id, stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id")
         print("TOTAL DE DISCOS POR GENERO MUSICAL: ")
         for linha in cur.fetchall():
             imprime(linha)
