@@ -24,7 +24,6 @@ def func(conn,cur, id):
         x = input('\n')
 
         if x == '1':
-            print('Adicionar album')
             operacoes_carrinho.add(conn, cur, id)
 
         elif x == '2':
