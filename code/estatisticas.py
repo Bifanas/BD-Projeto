@@ -24,7 +24,7 @@ def func(cur):
         e = cur.fetchone()[0]
         print("TOTAL DE ARTISTAS: ", e)
 
-        #AJUDA
+        #AJUDA top 5, quantidade
         cur.execute("SELECT nome FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
         print("ALBUNS MAIS VENDIDOS: ")
         for linha in cur.fetchall():
