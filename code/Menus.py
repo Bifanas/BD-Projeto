@@ -9,12 +9,13 @@ import notificacao
 import alterar_saldo
 import pedido
 import notificacao_cliente
-
+import pesquisar
 
 import psycopg2
+
 # vai importar todas as funcoes dos arquivos
 
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=satanasreina")
+conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
 
 # Menu inicial
@@ -37,14 +38,13 @@ while (True):
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
 
-
         if (usuario == '1'):
             # Menu principal Cliente
 
-            cur.execute("SELECT nome FROM cliente WHERE id = %s;", (id, ))
+            cur.execute("SELECT nome FROM cliente WHERE id = %s;", (id,))
             nome = cur.fetchone()[0]
-            
-             #Identifica o nome do cliente
+
+            # Identifica o nome do cliente
 
             x = '0'  # inicializa o valor de x
             while x != '5':
@@ -61,6 +61,7 @@ while (True):
                 elif x == '2':  # Pesquisa
                     print('\nUsuario:', nome)
                     print('Pesquisa')
+                    pesquisar.func(conn,cur, id)
                 elif x == '3':  # Historico de compras
                     print('\nUsuario:', nome)
                     print('Historico de compras')
@@ -80,7 +81,8 @@ while (True):
 
             x = '0'  # inicializa o valor de x
             while x != '8':
-                print('Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
+                print(
+                    'Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
                 # Mostra as opcoes
                 x = input('\n')
                 # Obtem a escolha do cliente
@@ -95,7 +97,7 @@ while (True):
 
                 elif x == '3':  # Corrigir preco
                     print('Corrigir preço')
-                    corrigir_preco.func(conn, cur,id)
+                    corrigir_preco.func(conn, cur, id)
 
                 elif x == '4':  # Remover album
                     print('Remover album')

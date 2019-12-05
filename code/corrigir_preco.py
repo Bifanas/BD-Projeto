@@ -23,7 +23,7 @@ def func(conn, cur,adm):
 
             #Procura na base de dados pelo nome do album
             cur.execute("SELECT count(*) FROM album WHERE nome = %s;", (nome,))
-            q = cur.fetchone()
+            q = cur.fetchone()[0]
 
             #Caso nao exista album com este nome
             if (q == 0):
@@ -42,13 +42,16 @@ def func(conn, cur,adm):
                 id = eval(input("Insira o albumID: "))
                 b=0
 
-        #Regista novo preco e a data da alteracao e insere em historico_a
-        preco = eval(input("Insira o novo preco: "))
+        #acrescentar preco antigo no historico_a
+        cur.execute("SELECT preco FROM album WHERE id = %s;", (id))
+        p = cur.fetchone()[0]
+
         now = datetime.datetime.now()
         data = (str(now.day) + '-' + str(now.month) + '-' + str(now.year) + ' ' + str(now.hour) + ':' + str(now.minute))
-        cur.execute("INSERT INTO historico_a values (%s,%s,%s,%s)", (preco, data, adm, id))
+        cur.execute("INSERT INTO historico_a values (%s,%s,%s,%s)", (p, data, adm, id))
 
         #Faz a alteracao do preco do album
+        preco = eval(input("Insira o novo preco: "))
         cur.execute("UPDATE album SET preco = %s WHERE id = %s;", (preco, id))
         conn.commit()
 
