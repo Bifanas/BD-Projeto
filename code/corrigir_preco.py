@@ -8,7 +8,7 @@ import datetime
 def imprime(linha):
     print('       '.join(map(str, linha)))
 
-def func(conn, cur,adm):
+def func(conn, cur,id):
     a = '1'
     b = 1
 
@@ -39,20 +39,20 @@ def func(conn, cur,adm):
                 for linha in cur.fetchall():
                     imprime(linha)
 
-                id = eval(input("Insira o albumID: "))
+                i = eval(input("Insira o albumID: "))
                 b=0
 
         #acrescentar preco antigo no historico_a
-        cur.execute("SELECT preco FROM album WHERE id = %s;", (id))
+        cur.execute("SELECT preco FROM album WHERE id = %s;", (i,))
         p = cur.fetchone()[0]
-
+        print(p)
         now = datetime.datetime.now()
         data = (str(now.day) + '-' + str(now.month) + '-' + str(now.year) + ' ' + str(now.hour) + ':' + str(now.minute))
-        cur.execute("INSERT INTO historico_a values (%s,%s,%s,%s)", (p, data, adm, id))
+        cur.execute("INSERT INTO historico_a values (%s,%s,%s,%s)", (p, data, id, i))
 
         #Faz a alteracao do preco do album
         preco = eval(input("Insira o novo preco: "))
-        cur.execute("UPDATE album SET preco = %s WHERE id = %s;", (preco, id))
+        cur.execute("UPDATE album SET preco = %s WHERE id = %s;", (preco, i))
         conn.commit()
 
         #Caso utilizador nao queira fazer mais alteracoes
