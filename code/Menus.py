@@ -32,7 +32,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = login.func(cur)
+        usuario, id = '0',1
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
@@ -69,10 +69,8 @@ while (True):
                     print('Notificacao')
                     notificacao_cliente.func(conn, cur, id)
                 elif x == '5':  # Logout
-                    print('\nUsuario:', nome)
                     print('Logout')
                 else:
-                    print('\nUsuario:', nome)
                     print("\nOpcao nao valida")
 
         # -------------------------------------------------------------------------------------
