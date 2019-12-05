@@ -1,4 +1,5 @@
 import operacoes_carrinho
+import finalizar_compra
 
 def imprime(linha):
     print(' - '.join(map(str, linha)))
@@ -38,10 +39,10 @@ def func(conn,cur, id):
             if (q == 0):
                 print("Nao é possivel finalizar compras pois não há álbum no carrinho.")
             else:
-                operacoes_carrinho.finalizar(conn, cur, id)
+                finalizar_compra.finalizar(conn, cur, id)
 
         elif x == '4':
-            print('Logout')
+            print('Retornar')
 
         else:
             print("Opcao nao valida")
