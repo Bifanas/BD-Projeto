@@ -1,4 +1,4 @@
-import ordenacao
+import ordena_pesquisa
 def imprime(linha):\
     print(' - '.join(map(str, linha)))
 
@@ -12,20 +12,20 @@ def func(conn,cur,id):
 
         if x == '1':
             print('Ordenar por album')
-            ordenacao.por_album(conn,cur,id)
+            ordena_pesquisa.por_album(conn,cur,id)
 
 
         elif x == '2':
             print('Ordenar por musica')
-            ordenacao.por_musica(conn,cur,id)
+            ordena_pesquisa.por_musica(conn,cur,id)
 
         elif x == '3':
             print('Ordenar por genero')
-            ordenacao.por_genero(conn, cur, id)
+            ordena_pesquisa.por_genero(conn, cur, id)
 
         elif x == '4':
             print('Ordenar por grupo')
-            ordenacao.por_grupo(conn,cur,id)
+            ordena_pesquisa.por_grupo(conn,cur,id)
 
         elif x == '5':
             print('Retornar')
