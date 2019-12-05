@@ -24,11 +24,9 @@ def func(cur):
         e = cur.fetchone()[0]
         print("TOTAL DE ARTISTAS: ", e)
 
-        #AJUDA
-        cur.execute("SELECT nome FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
-        print("ALBUNS MAIS VENDIDOS: ")
-        for linha in cur.fetchall():
-            imprime(linha)
+        cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
+        print("ALBUM MAIS VENDIDO E QUANTIDADE: ")
+        print(cur.fetchall()[0], '\n')
 
         #AJUDA
         cur.execute("SELECT distinct tipo_genero, stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id;")
