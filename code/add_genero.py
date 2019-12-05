@@ -23,7 +23,7 @@ def adicionar_genero(conn,cur):
                 if (q == 0):
                     print("Não existe genero com este nome.")
                     b = 1
-                # VAI IMPRIMIR NA TELA O ID DO GENERO QUE TENHA ENCONTRADO PARA O ADM SELECIONAR QUAL É
+                # VAI IMPRIMIR NA TELA O ID DO GENERO QUE TENHA ENCONTRADO
                 else:
                     b = 0
                     cur.execute("SELECT id, tipo_genero FROM genero WHERE tipo_genero = %s;",(nome, ))
@@ -32,7 +32,7 @@ def adicionar_genero(conn,cur):
 
                     n = input("Digite o ID do genero: ")
 
-            # VAI PROCURAR ULTIMO ALBUM REGISTADO E ADICIONAR OS IDS NA TABELA MUSICA_ALBUM
+            # VAI PROCURAR ULTIMO ALBUM REGISTADO E ADICIONAR OS IDS NA TABELA ALBUM_GENERO
             cur.execute("SELECT MAX(id) FROM album")
             id_a = cur.fetchone()[0]
 
@@ -43,7 +43,7 @@ def adicionar_genero(conn,cur):
         elif (r == 2):
             tipo_genero = input("Nome do Genero: ")
 
-            # PROCURA ULTIMO ID DE MUSICA REGISTADO E ADICIONA A MUSICA NO PROXIMO
+            # PROCURA ULTIMO ID DE GENERO REGISTADO E ADICIONA O GENERO NO PROXIMO
             cur.execute("SELECT MAX(id) FROM genero")
             id_g = cur.fetchone()[0]
             id_g += 1
