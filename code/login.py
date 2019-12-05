@@ -45,7 +45,6 @@ def func(cur):
                 id = cur.fetchone()[0]
                 return '1', id
 
-
         else: #Da opcao ao cliente para sair do meunu login
             print("Email ou PassWord incorretos.\n")
             z ='0'
