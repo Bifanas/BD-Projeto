@@ -62,5 +62,4 @@ def finalizar(conn, cur, id):
 
 
 
-
 finalizar(conn,cur,1)
