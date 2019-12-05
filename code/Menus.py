@@ -7,6 +7,8 @@ import remover_album
 import estatisticas
 import notificacao
 import alterar_saldo
+import pedido
+import notificacao_cliente
 
 
 import psycopg2
