@@ -4,7 +4,7 @@ def imprime(linha):
     print(' - '.join(map(str, linha)))
 
 def func(conn,cur, id):
-    cur.execute("SELECT count(album_id) FROM pedido ")
+    cur.execute("SELECT count(album_id) FROM pedido WHERE cliente_id = %s;", (id,))
     q = cur.fetchone()[0]
 
     x=0
@@ -36,7 +36,7 @@ def func(conn,cur, id):
         elif x == '3':
             print('Finalizar compras')
             if (q == 0):
-                print("Nao é possivel finalizar compras.")
+                print("Nao é possivel finalizar compras pois não há álbum no carrinho.")
             else:
                 operacoes_carrinho.finalizar(conn, cur, id)
 
