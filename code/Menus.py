@@ -70,10 +70,8 @@ while (True):
                     print('Notificacao')
                     notificacao_cliente.func(conn, cur, id)
                 elif x == '5':  # Logout
-                    print('\nUsuario:', nome)
                     print('Logout')
                 else:
-                    print('\nUsuario:', nome)
                     print("\nOpcao nao valida")
 
         # -------------------------------------------------------------------------------------

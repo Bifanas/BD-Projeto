@@ -1,7 +1,3 @@
-import psycopg2
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
-cur = conn.cursor()
-
 def func():
     x = 0
     while(x != 5):

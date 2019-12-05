@@ -20,16 +20,18 @@ def func(cur):
         d = cur.fetchone()[0]
         print("VALOR TOTAL DAS VENDAS: ", d)
 
-        cur.execute("SELECT count(id) FROM artista;")
-        e = cur.fetchone()[0]
-        print("TOTAL DE ARTISTAS: ", e)
-
         cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
         print("ALBUM MAIS VENDIDO E QUANTIDADE: ")
         print(cur.fetchall()[0], '\n')
 
-        #AJUDA
-        cur.execute("SELECT distinct tipo_genero, stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id;")
+        #Duas estatisticas extra
+
+        cur.execute("SELECT count(id) FROM artista;")
+        e = cur.fetchone()[0]
+        print("TOTAL DE ARTISTAS: ", e)
+
+        #Verificar se funciona
+        cur.execute("SELECT distinct tipo_genero, genero_id, stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id")
         print("TOTAL DE DISCOS POR GENERO MUSICAL: ")
         for linha in cur.fetchall():
             imprime(linha)
