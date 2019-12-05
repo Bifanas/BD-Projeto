@@ -7,14 +7,14 @@ import remover_album
 import estatisticas
 import notificacao
 import alterar_saldo
-
 import pedido
 import notificacao_cliente
+
 
 import psycopg2
 # vai importar todas as funcoes dos arquivos
 
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
+conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=satanasreina")
 cur = conn.cursor()
 
 # Menu inicial
@@ -31,46 +31,52 @@ while (True):
         registo_cliente.func(conn, cur)
 
     elif x == '2':  # Login
-        usuario, id = 0,1
+        usuario = '0'
+        usuario, id = login.func(cur)
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
 
-        if (usuario == 1):
+
+        if (usuario == '1'):
             # Menu principal Cliente
+
+            cur.execute("SELECT nome FROM cliente WHERE id = %s;", (id, ))
+            nome = cur.fetchone()[0]
+            
+             #Identifica o nome do cliente
 
             x = '0'  # inicializa o valor de x
             while x != '5':
-                print(id)
+                print('\nUsuario:', nome)
                 print('1 - Carrinho\n2 - Pesquisar\n3 - Histórico de compras\n4 - Notificações\n5 - Logout')
                 # Mostra as opcoes
                 x = input('\n')
                 # Obtem a escolha do cliente
 
                 if x == '1':  # Carrinho
-                    print(id)
+                    print('\nUsuario:', nome)
                     print('Carrinho')
-                    pedido.func(conn,cur,id)
+                    pedido.func(conn, cur, id)
                 elif x == '2':  # Pesquisa
-                    print(id)
+                    print('\nUsuario:', nome)
                     print('Pesquisa')
-
                 elif x == '3':  # Historico de compras
-                    print(id)
+                    print('\nUsuario:', nome)
                     print('Historico de compras')
                 elif x == '4':  # Notificacao
-                    print(id)
+                    print('\nUsuario:', nome)
                     print('Notificacao')
-                    notificacao_cliente.func(conn,cur,id)
+                    notificacao_cliente.func(conn, cur, id)
                 elif x == '5':  # Logout
-
+                    print('\nUsuario:', nome)
                     print('Logout')
                 else:
-
-                    print("Opcao nao valida")
+                    print('\nUsuario:', nome)
+                    print("\nOpcao nao valida")
 
         # -------------------------------------------------------------------------------------
-        elif (usuario == 0):
+        elif (usuario == '0'):
 
             # Menu principla Admin
 
