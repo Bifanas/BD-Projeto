@@ -27,6 +27,7 @@ def add(conn, cur,id):
         #Insere no pedido o album e o cliente
         else:
             cur.execute("INSERT INTO pedido VALUES (%s,%s);", (id,i))
+            conn.commit()
 
             #Mostra total de compras
             cur.execute("SELECT SUM(preco) FROM pedido, album WHERE cliente_id = %s and album_id = album.id;", (id,))

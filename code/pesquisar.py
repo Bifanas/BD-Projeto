@@ -12,22 +12,24 @@ def func(conn,cur,id):
 
         if x == '1':
             print('Ordenar por album')
-            ordenacao.por_album(cur)
-
+            ordenacao.por_album(conn,cur,id)
 
 
         elif x == '2':
             print('Ordenar por musica')
+            ordenacao.por_musica(conn,cur,id)
 
         elif x == '3':
             print('Ordenar por genero')
+            ordenacao.por_genero(conn, cur, id)
+
+        elif x == '3':
+            print('Ordenar por grupo')
+            ordenacao.por_grupo(conn,cur,id)
 
         elif x == '4':
             print('Retornar')
 
         else:
             print("\nOpcao nao valida")
-
-
-    print("ALBUNS:")
 
