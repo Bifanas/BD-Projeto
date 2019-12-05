@@ -34,8 +34,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = '1' \
-                      '',1
+        usuario, id = '1',1
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------

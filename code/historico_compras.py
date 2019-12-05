@@ -9,20 +9,20 @@ def func(conn, cur,id):
 
         if x == '1':
             print('Ordenar por album')
-            ordena_historico.por_album(conn, cur, id)
+            ordena_historico.por_album(cur, id)
 
 
         elif x == '2':
             print('Ordenar por musica')
-            ordena_historico.por_musica(conn, cur, id)
+            ordena_historico.por_musica(cur, id)
 
         elif x == '3':
             print('Ordenar por genero')
-            ordena_historico.por_genero(conn, cur, id)
+            ordena_historico.por_genero(cur, id)
 
         elif x == '4':
             print('Ordenar por grupo')
-            ordena_historico.por_grupo(conn, cur, id)
+            ordena_historico.por_grupo(cur, id)
 
         elif x == '5':
             print('Retornar')
