@@ -55,6 +55,7 @@ while (True):
                 if x == '1':  # Carrinho
                     print('\nUsuario:', nome)
                     print('Carrinho')
+                    pedido.func(conn, cur, id)
                 elif x == '2':  # Pesquisa
                     print('\nUsuario:', nome)
                     print('Pesquisa')
@@ -64,6 +65,7 @@ while (True):
                 elif x == '4':  # Notificacao
                     print('\nUsuario:', nome)
                     print('Notificacao')
+                    notificacao_cliente.func(conn, cur, id)
                 elif x == '5':  # Logout
                     print('\nUsuario:', nome)
                     print('Logout')
