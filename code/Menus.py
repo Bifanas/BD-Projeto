@@ -8,6 +8,8 @@ import estatisticas
 import notificacao
 import alterar_saldo
 
+import pedido
+import notificacao_cliente
 
 import psycopg2
 # vai importar todas as funcoes dos arquivos
@@ -29,7 +31,7 @@ while (True):
         registo_cliente.func(conn, cur)
 
     elif x == '2':  # Login
-        usuario, id = login.func(cur)
+        usuario, id = 0,1
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
@@ -48,20 +50,23 @@ while (True):
                 if x == '1':  # Carrinho
                     print(id)
                     print('Carrinho')
+                    pedido.func(conn,cur,id)
                 elif x == '2':  # Pesquisa
                     print(id)
                     print('Pesquisa')
+
                 elif x == '3':  # Historico de compras
                     print(id)
                     print('Historico de compras')
                 elif x == '4':  # Notificacao
                     print(id)
                     print('Notificacao')
+                    notificacao_cliente.func(conn,cur,id)
                 elif x == '5':  # Logout
-                    print(id)
+
                     print('Logout')
                 else:
-                    print(id)
+
                     print("Opcao nao valida")
 
         # -------------------------------------------------------------------------------------
