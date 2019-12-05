@@ -28,7 +28,7 @@ def func(cur):
                 b=0
                 cur.execute("SELECT id FROM administrador WHERE password = %s and email = %s;",(senha, email))
                 id = cur.fetchone()[0]
-                return 0, id
+                return '0', id
 
 
         elif(c[0] != 0):
@@ -41,9 +41,9 @@ def func(cur):
 
             else:
                 b=0
-                cur.execute("SELECT nome FROM cliente WHERE password = %s and email = %s;",(senha, email))
-                nome = cur.fetchone()[0]
-                return 1, nome
+                cur.execute("SELECT id FROM cliente WHERE password = %s and email = %s;",(senha, email))
+                id = cur.fetchone()[0]
+                return '1', id
 
 
         else: #Da opcao ao cliente para sair do meunu login
