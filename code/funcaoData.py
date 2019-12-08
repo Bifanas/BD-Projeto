@@ -40,8 +40,12 @@ def data():
         aux = mes
         mes = '0' + aux
 
+    ano = 0
+    while(ano < 1900):
+        ano = input('Ano: ')
 
-    ano = input('Ano: ')
+
+
     data = dia + '-'+ mes + '-' + ano
 
     return data
