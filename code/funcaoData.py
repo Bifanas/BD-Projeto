@@ -12,9 +12,12 @@ def data():
         dia = input('Dia: ')
         a = 0
         if(dia[0] == '0'):
-            if(dia[1] >= '1' and dia[1] <= '9' ):
-                a = dia[1]
-                d = eval(a)
+            if(len(dia) != 2):
+                d=0
+            else:
+                if(dia[1] >= '1' and dia[1] <= '9' ):
+                    a = dia[1]
+                    d = eval(a)
 
         else:
             d = eval(dia)
@@ -40,12 +43,14 @@ def data():
         aux = mes
         mes = '0' + aux
 
-    ano = 0
-    while(ano < 1900):
+    a = 0
+    while(a < 1900):
         ano = input('Ano: ')
-
+        if(len(ano) != 4):
+            a = 0
+        else:
+            a = eval(ano)
 
 
     data = dia + '-'+ mes + '-' + ano
-
     return data
