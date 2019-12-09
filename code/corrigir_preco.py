@@ -9,6 +9,7 @@ def imprime(linha):
     print('       '.join(map(str, linha)))
 
 def func(conn, cur,id):
+    print('\nCorrigir preço')
     a = '1'
     b = 1
 
@@ -29,6 +30,11 @@ def func(conn, cur,id):
             if (q == 0):
                 print("Não existe album com este nome.")
                 b=1
+                z = '0'
+                z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+                if z == '0':
+                    print("\n")
+                    return
 
             #Caso exista album com o nome selecionado
             else:
@@ -45,7 +51,7 @@ def func(conn, cur,id):
         #acrescentar preco antigo no historico_a
         cur.execute("SELECT preco FROM album WHERE id = %s;", (i,))
         p = cur.fetchone()[0]
-        print(p)
+
         now = datetime.datetime.now()
         data = (str(now.day) + '-' + str(now.month) + '-' + str(now.year) + ' ' + str(now.hour) + ':' + str(now.minute))
         cur.execute("INSERT INTO historico_a values (%s,%s,%s,%s)", (p, data, id, i))
@@ -57,3 +63,4 @@ def func(conn, cur,id):
 
         #Caso utilizador nao queira fazer mais alteracoes
         a = input("Insere 0 para voltar: ")
+    print("\n")
