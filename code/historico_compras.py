@@ -32,7 +32,6 @@ def func(cur,id):
 
         elif x == '6':
             print('\nUsuario:', nome)
-            ordena_historico.distincao(cur,id)
 
         elif x == '7':
             print('\nRetornar')

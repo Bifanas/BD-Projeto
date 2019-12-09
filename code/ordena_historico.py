@@ -54,13 +54,18 @@ def pedidos_anteriores(cur,id):
         print("Pedidos Anteriores:")
 
         cur.execute("SELECT count(historico_c.id) FROM cliente, historico_c WHERE cliente.id = historico_c.cliente_id and cliente.id = %s;",(id,))
-        q = cur.fetchone()[0]
+        a = cur.fetchone()[0]
         b=1
         while b <= q:
+            cur.execute("SELECT album.nome FROM cliente, historico_c_album, album WHERE cliente.id = %s and historico_c_album.historico_c_id = %s and historico_c_album.album_id = album.id order by nome ASC;", (id, b))
+            g = cur.fetchone()[0]
+            if(g is None):
+                b+=1
+
             cur.execute("SELECT data_de_compra FROM cliente, historico_c WHERE cliente.id = historico_c.cliente_id and cliente.id = %s and historico_c.id=%s;",(id,b))
             data = cur.fetchone()[0]
 
-            print("\nNumero do pedido: ", b, " Data de Compra: ", data)
+            print("\nNumero do pedido: ", b, "   Data de Compra: ", data)
             cur.execute("SELECT album.nome, preco FROM cliente, historico_c_album, album WHERE cliente.id = %s and historico_c_album.historico_c_id = %s and historico_c_album.album_id = album.id order by nome ASC;",(id,b))
             print("Album     Preço")
             for linha in cur.fetchall():
@@ -74,19 +79,3 @@ def pedidos_anteriores(cur,id):
         a = input("\nInsere 0 para voltar: ")
 
 #-------------------------------------------------------------------------------------------------------------
-
-def distincao(cur,id):
-    print("Valor Gasto por Genero Musical: ")
-    b=1
-    cur.execute(";"(id, ))
-    q = cur.fetchone()[0]
-    while (b <= q):
-        cur.execute(";"(id,))
-        g = cur.fetchone()[0]
-
-        cur.execute(";"(id, ))
-        v = cur.fetchone()[0]
-
-        print(g, '  ', v)
-        b+=1
-
