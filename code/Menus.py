@@ -15,7 +15,7 @@ import psycopg2
 
 # vai importar todas as funcoes dos arquivos
 
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
+conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=satanasreina")
 cur = conn.cursor()
 
 # Menu inicial
