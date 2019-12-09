@@ -20,5 +20,3 @@ def func(cur):
         a = input("Insere 0 para voltar: ")
 
     print("\n")
-
-
