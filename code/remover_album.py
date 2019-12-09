@@ -8,6 +8,7 @@ def imprime(linha):
     print('       '.join(map(str, linha)))
 
 def func(conn, cur):
+    print('\nRemover album')
     a = '1'
     b = 1
     # Enquanto o adm nao inserir 0 para voltar ao menu ficará removendo album
