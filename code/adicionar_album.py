@@ -4,6 +4,7 @@ import add_artista
 
 # ADICIONAR ALBUM À BASE DE DADOS
 def func(conn, cur):
+    print('\nAdicionar album')
     a= '1'
     while a!= '0':
         # DADOS DO ALBUM PEDIDOS
