@@ -49,6 +49,11 @@ def adicionar_artista(conn, cur):
             # PROCURA ULTIMO ID DE ARTISTA REGISTADO E ADICIONA O ARTISTA NO PROXIMO
             cur.execute("SELECT MAX(id) FROM artista")
             id_art = cur.fetchone()[0]
+
+            # VERIFICA SE NAO TEM NENHUM ARTISTA REGISTADO
+            if (id_art is None):
+                id_art = 0
+
             id_art += 1
             cur.execute("INSERT INTO artista values (%s,%s)", (id_art,Nome,))
             conn.commit()

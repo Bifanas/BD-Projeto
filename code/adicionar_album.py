@@ -4,6 +4,7 @@ import add_artista
 
 # ADICIONAR ALBUM À BASE DE DADOS
 def func(conn, cur):
+    print('\nAdicionar album')
     a= '1'
     while a!= '0':
         # DADOS DO ALBUM PEDIDOS
@@ -16,6 +17,10 @@ def func(conn, cur):
         # PROCURA O ULTIMO ID REGISTADO E ADICIONA O ALBUM NO PROXIMO ID
         cur.execute("SELECT MAX(id) FROM album")
         id_a = cur.fetchone()[0]
+
+        # VERIFICA SE NAO TEM NENHUM ALBUM REGISTADO
+        if (id_a is None):
+            id_a = 0
         id_a += 1
         cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s)", (id_a, nome, duracao, ano, Stock, Preco))
         conn.commit()
@@ -24,3 +29,5 @@ def func(conn, cur):
         add_musica.adicionar_musica(conn, cur)
         add_genero.adicionar_genero(conn, cur)
         add_artista.adicionar_artista(conn, cur)
+
+        a = input("Insere 0 para voltar ao menu: ")

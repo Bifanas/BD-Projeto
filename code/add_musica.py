@@ -49,6 +49,11 @@ def adicionar_musica(conn,cur):
             # PROCURA ULTIMO ID DE MUSICA REGISTADO E ADICIONA A MUSICA NO PROXIMO
             cur.execute("SELECT MAX(id) FROM musica")
             id_m = cur.fetchone()[0]
+
+            # VERIFICA SE NAO TEM NENHUMA MUSICA REGISTADO
+            if(id_m is None):
+                id_m = 0
+
             id_m += 1
             cur.execute("INSERT INTO musica values (%s,%s)", (id_m, Nome, ))
             conn.commit()

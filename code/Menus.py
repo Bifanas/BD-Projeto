@@ -10,6 +10,7 @@ import alterar_saldo
 import pedido
 import notificacao_cliente
 import pesquisar
+import historico_compras
 
 import psycopg2
 
@@ -33,7 +34,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = '0',1
+        usuario, id = '1',1
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
@@ -65,6 +66,7 @@ while (True):
                 elif x == '3':  # Historico de compras
                     print('\nUsuario:', nome)
                     print('Historico de compras')
+                    historico_compras.func(conn,cur,id)
                 elif x == '4':  # Notificacao
                     print('\nUsuario:', nome)
                     print('Notificacao')

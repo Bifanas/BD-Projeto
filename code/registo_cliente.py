@@ -7,7 +7,7 @@ import funcaoData
 # Para a data de nascimento é chamado a funcaoData que recolhe as informacoes e organiza no formato.
 
 def func(conn,cur):
-    print("Registar-se")
+    print("\nRegistar-se")
     a = 1
     b = 1
 
@@ -22,7 +22,8 @@ def func(conn,cur):
     while a:
         senha = input('Password: ')
         a = 0
-        if (len(senha) < 0):
+        if (len(senha) < 4):
+            print("Password fraca, insira outra")
             a = 1
 
     a=1
@@ -30,7 +31,7 @@ def func(conn,cur):
     while a or b:
         email = input('Email: ')
         a=0
-        if(len(email) < 1):
+        if(len(email) < 5):
             a=1
 
         cur.execute("SELECT count(id) FROM cliente WHERE email = %s;", (email,))
@@ -40,8 +41,10 @@ def func(conn,cur):
         if (cont != 0):
             print('Insira outro email. ')
             b = 1
+
     print("Data de nascimento:")
     data = funcaoData.data()
-    print("Cliente Registado.")
+
+    print("Cliente Registado.\n")
     cur.execute("INSERT INTO cliente (nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,20)", (nome,senha, email, data))
     conn.commit()
