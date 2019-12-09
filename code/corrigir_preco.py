@@ -5,7 +5,8 @@ import datetime
 # O preco é atualizado e inserido no historico do album
 
 def func(conn, cur,id):
-    print('\nCorrigir preço')
+    print('\n')
+    print('CORRIGIR PREÇO')
     a = '1'
     b = 1
 
@@ -29,7 +30,6 @@ def func(conn, cur,id):
                 z = '0'
                 z = input("Prima 0 para sair ou 1 para tentar novamente: ")
                 if z == '0':
-                    print("\n")
                     return
 
             #Caso exista album com o nome selecionado
@@ -72,4 +72,3 @@ def func(conn, cur,id):
 
         #Caso utilizador nao queira fazer mais alteracoes
         a = input("Insira 0 para voltar: ")
-    print("\n")
