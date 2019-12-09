@@ -19,6 +19,8 @@ def func(cur):
 
         cur.execute("SELECT SUM (preco) FROM historico_c_album, album WHERE album.id = historico_c_album.album_id;")
         d = cur.fetchone()[0]
+        if(d is None):
+            d=0
         print("VALOR TOTAL DAS VENDAS: ", d)
 
         cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
