@@ -127,3 +127,17 @@ VALUES(5, 4);
 
 INSERT INTO historico_c_album
 VALUES(6, 5);
+
+delete from historico_a;
+delete from album_genero;
+delete from musica_album;
+delete from artista_album;
+delete from artista;
+delete from genero;
+delete from musica;
+delete from c_entrada;
+delete from notificacao;
+delete from historico_c_album;
+delete from historico_c;
+delete from pedido;
+delete from album;
