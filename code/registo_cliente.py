@@ -7,7 +7,7 @@ import funcaoData
 # Para a data de nascimento é chamado a funcaoData que recolhe as informacoes e organiza no formato.
 
 def func(conn,cur):
-    print("Registar-se")
+    print("\nRegistar-se")
     a = 1
     b = 1
 
