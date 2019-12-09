@@ -5,8 +5,7 @@ def func(cur):
     q = cur.fetchone()[0]
 
     if(q == 0):
-        print("\n")
-        print("Não há álbuns registados.")
+        print("\nNão há álbuns registados.")
 
     else:
         # Procura todos albuns disponiveis em stock e mostra no ecra
