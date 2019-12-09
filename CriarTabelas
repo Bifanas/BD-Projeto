@@ -119,6 +119,3 @@ ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk1 FOREIGN KEY (musica_id)
 ALTER TABLE musica_album ADD CONSTRAINT musica_album_fk2 FOREIGN KEY (album_id) REFERENCES album(id);
 ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk1 FOREIGN KEY (album_id) REFERENCES album(id);
 ALTER TABLE album_genero ADD CONSTRAINT album_genero_fk2 FOREIGN KEY (genero_id) REFERENCES genero(id);
-
-
-Properties
