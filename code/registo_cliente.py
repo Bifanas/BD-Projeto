@@ -45,6 +45,14 @@ def func(conn,cur):
     print("Data de nascimento:")
     data = funcaoData.data()
 
+    cur.execute("SELECT count(id) FROM cliente;")
+    k = cur.fetchone()[0]
+    if(k == 0):
+        id =1
+
+    else:
+        k+=1
+
     print("Cliente Registado.\n")
-    cur.execute("INSERT INTO cliente (nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,20)", (nome,senha, email, data))
+    cur.execute("INSERT INTO cliente (id, nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,%s,20)", (id,nome,senha, email, data))
     conn.commit()
