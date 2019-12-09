@@ -46,6 +46,11 @@ def adicionar_genero(conn,cur):
             # PROCURA ULTIMO ID DE GENERO REGISTADO E ADICIONA O GENERO NO PROXIMO
             cur.execute("SELECT MAX(id) FROM genero")
             id_g = cur.fetchone()[0]
+
+            # VERIFICA SE NAO TEM NENHUM GENERO REGISTADO
+            if (id_g is None):
+                id_g = 0
+
             id_g += 1
             cur.execute("INSERT INTO genero values (%s,%s)", (id_g,tipo_genero))
             conn.commit()
