@@ -1,6 +1,7 @@
 import datetime
 
 def func(conn,cur,id):
+    print('\nNotificar')
     a = '1'
     while a != '0':
         now= datetime.datetime.now()

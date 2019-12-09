@@ -5,6 +5,7 @@ def imprime(linha):
     print('       '.join(map(str, linha)))
 
 def func(conn, cur):
+    print('\nAlterar saldo')
     a = '1'
     while a != '0':
 
@@ -20,7 +21,7 @@ def func(conn, cur):
         #Caso tenha encontrado
         else:
             #Imprime no ecra os nomes encontrados e pede o id do cliente e o saldo
-            cur.execute("SELECT id, nome, saldo FROM cliente WHERE nome = %s ORDER BY id;", (nome,))
+            cur.execute("SELECT id, nome, saldo FROM cliente WHERE nome LIKE %s ORDER BY id;", (nome,))
             for linha in cur.fetchall():
                 imprime(linha)
             n = eval(input("Digite o ID: "))

@@ -2,6 +2,7 @@ def imprime(linha):
     print('    '.join(map(str, linha)))
 
 def func(cur):
+    print('\nEstatisticas')
     a = '1'
     while a != '0':
         cur.execute("SELECT count(*) FROM cliente;")
