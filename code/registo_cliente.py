@@ -44,6 +44,7 @@ def func(conn,cur):
 
     print("Data de nascimento:")
     data = funcaoData.data()
+
     print("Cliente Registado.\n")
     cur.execute("INSERT INTO cliente (nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,20)", (nome,senha, email, data))
     conn.commit()
