@@ -16,7 +16,7 @@ import psycopg2
 
 # vai importar todas as funcoes dos arquivos
 
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
+conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=satanasreina")
 cur = conn.cursor()
 
 # Menu inicial
@@ -34,7 +34,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = '1',1
+        usuario, id = '1',1 #login.func(cur)
         # A funcao login retorna o tipo de usuario
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
