@@ -28,3 +28,4 @@ def func(conn, cur):
     add_musica.adicionar_musica(conn, cur)
     add_genero.adicionar_genero(conn, cur)
     add_artista.adicionar_artista(conn, cur)
+    print("\n")

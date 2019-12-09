@@ -18,4 +18,4 @@ def func(cur):
     while a != '0':
         a =input("Insere 0 para voltar: ")
 
-    print(" ")
+    print("\n")

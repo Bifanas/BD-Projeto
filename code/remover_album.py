@@ -10,9 +10,10 @@ def imprime(linha):
 def func(conn, cur):
     print('\nRemover album')
     a = '1'
-    b = 1
+
     # Enquanto o adm nao inserir 0 para voltar ao menu ficará removendo album
     while a != '0':
+        b = 1
         # Enquanto o adm nao inserir o nome correto ficara pedindo o nome do album
         while b:
             q = 0
@@ -46,6 +47,7 @@ def func(conn, cur):
 
         else:
             #Deleta das tabelas existentes
+            conn.begin()
             cur.execute("DELETE FROM album_genero WHERE album_id = %s;", (id,))
             cur.execute("DELETE FROM musica_album WHERE album_id = %s;", (id,))
             cur.execute("DELETE FROM artista_album WHERE album_id = %s;", (id,))

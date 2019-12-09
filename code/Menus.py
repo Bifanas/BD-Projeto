@@ -1,22 +1,23 @@
+#Vai importar todas as funcoes dos arquivos
+#Funcoes do menu
 import registo_cliente
 import login
+#Funcoes ADM
 import adicionar_album
 import visualizar_albuns
 import corrigir_preco
 import remover_album
-import estatisticas
 import notificacao
+import estatisticas
 import alterar_saldo
+#Funcoes CLIENTE
 import pedido
-import notificacao_cliente
 import pesquisar
 import historico_compras
-
+import notificacao_cliente
+#
 import psycopg2
-
-# vai importar todas as funcoes dos arquivos
-
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=satanasreina")
+conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
 cur = conn.cursor()
 
 # Menu inicial
@@ -26,7 +27,7 @@ x = '0'  # inicializa o valor de x
 while (True):
     print('1 - Registar-se\n2 - Login')
     # mostra as opcoes
-    x = input('\n')
+    x = input('')
     # Obtem a escolha do cliente
 
     if x == '1':  # Registar-se
@@ -34,8 +35,9 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = '1',1 #login.func(cur)
-        # A funcao login retorna o tipo de usuario
+        usuario, id = '0',1
+        print("\n")
+        # A funcao login retorna o tipo de usuario1
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
 
@@ -66,7 +68,7 @@ while (True):
                 elif x == '3':  # Historico de compras
                     print('\nUsuario:', nome)
                     print('Historico de compras')
-                    historico_compras.func(conn,cur,id)
+                    historico_compras.func(cur,id)
                 elif x == '4':  # Notificacao
                     print('\nUsuario:', nome)
                     print('Notificacao')
@@ -83,42 +85,35 @@ while (True):
 
             x = '0'  # inicializa o valor de x
             while x != '8':
-                print(
-                    'Prima a opcao que desejar:\n\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
+                print('Prima a opcao que desejar:\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
                 # Mostra as opcoes
-                x = input('\n')
+                x = input('')
                 # Obtem a escolha do cliente
 
                 if x == '1':  # Adiciona Album
-                    print('Adiciona album')
                     adicionar_album.func(conn, cur)
 
                 elif x == '2':  # Visualiza albuns
-                    print('Visualiza albuns')
                     visualizar_albuns.func(cur)
 
                 elif x == '3':  # Corrigir preco
-                    print('Corrigir preço')
                     corrigir_preco.func(conn, cur, id)
 
                 elif x == '4':  # Remover album
-                    print('Remover album')
                     remover_album.func(conn, cur)
 
                 elif x == '5':  # Notificar
-                    print('Notificar')
                     notificacao.func(conn, cur, id)
 
                 elif x == '6':  # Estatisticas
-                    print('Estatisticas')
                     estatisticas.func(cur)
 
                 elif x == '7':  # Alterar saldo
-                    print('Alterar saldo')
                     alterar_saldo.func(conn, cur)
 
                 elif x == '8':  # logout
                     print("Logout")
+
                 else:
                     print("Opcao nao valida")
 
