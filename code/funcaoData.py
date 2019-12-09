@@ -69,6 +69,3 @@ def data():
 
     data = dia + '-'+ mes + '-' + ano
     return data
-
-
-data = data()
