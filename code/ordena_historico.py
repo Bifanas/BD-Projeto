@@ -79,3 +79,5 @@ def pedidos_anteriores(cur,id):
         a = input("\nInsere 0 para voltar: ")
 
 #-------------------------------------------------------------------------------------------------------------
+def valorGenero(cur,id,nome):
+    a=0

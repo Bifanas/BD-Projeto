@@ -37,7 +37,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = '0',1
+        usuario, id = '1',1
 
         # A funcao login retorna o tipo de usuario1
         # Retornar 1 para cliente e 0 para adm
@@ -53,32 +53,30 @@ while (True):
 
             x = '0'  # inicializa o valor de x
             while x != '5':
-                print('\nUsuario:', nome)
+                print('\n')
+                print('Usuário:', nome)
+                print("MENU PRINCIPAL")
                 print('1 - Carrinho\n2 - Pesquisar\n3 - Histórico de compras\n4 - Notificações\n5 - Logout')
                 # Mostra as opcoes
-                x = input('\n')
+                x = input('')
                 # Obtem a escolha do cliente
 
                 if x == '1':  # Carrinho
                     print('\nUsuario:', nome)
-                    print('Carrinho')
+                    print('CARRINHO')
                     pedido.func(conn, cur, id)
                 elif x == '2':  # Pesquisa
                     print('\nUsuario:', nome)
                     print('Pesquisa')
                     pesquisar.func(conn,cur, id)
                 elif x == '3':  # Historico de compras
-                    print('\nUsuario:', nome)
-                    print('Historico de compras')
-                    historico_compras.func(cur,id)
+                    historico_compras.func(cur,id, nome)
                 elif x == '4':  # Notificacao
-                    print('\nUsuario:', nome)
-                    print('Notificacao')
-                    notificacao_cliente.func(conn, cur, id)
+                    notificacao_cliente.func(conn, cur, id, nome)
                 elif x == '5':  # Logout
                     print('Logout')
                 else:
-                    print("\nOpcao nao valida")
+                    print("\nOpção não válida.")
 
         # -------------------------------------------------------------------------------------
         elif (usuario == '0'):
@@ -125,4 +123,4 @@ while (True):
 
         # -------------------------------------------------------------------------------------
     else:
-        print("Opcao nao valida")
+        print("Opção não válida")
