@@ -78,4 +78,4 @@ def func(conn, cur):
         cur.execute("UPDATE cliente SET saldo = %s WHERE id = %s;", (s_atual, i))
         conn.commit()
 
-        a = input("Insere 0 para voltar: ")
+        a = input("Insira 0 para voltar: ")
