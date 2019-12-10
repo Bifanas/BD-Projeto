@@ -1,40 +1,38 @@
 import ordena_historico
 
-def func(cur,id):
+def func(cur,id, nome):
     x = '0'
-    while x != '4':
-        print('\n1 - Ordenar por Album\n2 - Ordenar por Musica\n3 - Ordenar por Genero Musical\n4 - Ordenar por Grupo\n5 - Pedidos Anteriores\n6 - Valor Gasto por Genero Musical\n7 - Retornar')
-        x = input('\n')
+    while x != '7':
+        print('\n')
+        print('Usuário:', nome)
+        print("HISTÓRICO DE COMPRAS")
+        print('1 - Ordenar por Álbum\n2 - Ordenar por Música\n3 - Ordenar por Gênero Musical\n4 - Ordenar por Grupo\n5 - Pedidos Anteriores\n6 - Valor Gasto por Gênero Musical\n7 - Voltar')
+        x = input('')
 
-        cur.execute("SELECT nome FROM cliente WHERE id = %s;", (id,))
-        nome = cur.fetchone()[0]
 
         if x == '1':
-            print('\nUsuario:', nome)
-            ordena_historico.por_album(cur, id)
-
+            ordena_historico.por_album(cur, id,nome)
 
         elif x == '2':
-            print('\nUsuario:', nome)
-            ordena_historico.por_musica(cur, id)
+            ordena_historico.por_musica(cur, id,nome)
 
         elif x == '3':
-            print('\nUsuario:', nome)
-            ordena_historico.por_genero(cur, id)
+            ordena_historico.por_genero(cur, id,nome)
 
         elif x == '4':
-            print('\nUsuario:', nome)
-            ordena_historico.por_grupo(cur, id)
+            ordena_historico.por_grupo(cur, id,nome)
 
         elif x == '5':
-            print('\nUsuario:', nome)
-            ordena_historico.pedidos_anteriores(cur, id)
+            ordena_historico.pedidos_anteriores(cur, id,nome)
+
 
         elif x == '6':
-            print('\nUsuario:', nome)
+            ordena_hostorico.valorGenero(cur,id,nome)
 
         elif x == '7':
-            print('\nRetornar')
+            print('\n')
+            print("Voltar")
 
         else:
-            print("\nOpcao nao valida")
+            print('\n')
+            print("Opção não válida")
