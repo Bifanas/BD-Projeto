@@ -7,6 +7,7 @@ def data():
     #
     # O MESMO OCORRE PARA O MES
 
+
     d = 0
     while(d<1 or d>31):
         dia = input('Dia: ')
