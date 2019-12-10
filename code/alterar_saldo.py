@@ -60,7 +60,7 @@ def func(conn, cur):
                     i = cur.fetchone()[0]
                     b=0
 
-        #Valor qdo saldo que quer adicionar
+        #Valor do saldo que quer adicionar
         s = 0
         while(s == 0):
             saldo = input("Insira o saldo: ")
