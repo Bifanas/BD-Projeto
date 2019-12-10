@@ -1,72 +1,111 @@
-def imprime(linha):
-    print(' - '.join(map(str, linha)))
-
-# ADICIONA MUSICAS
 def adicionar_musica(conn,cur):
-    a = '1'
-    while a != '0':
+    print('\n')
+    print('ADICIONAR MÚSICA')
 
-        print ("Já existe uma musica do novo album registado?")
-        r = eval(input("1 - SIM\n2 - NAO\n"))
+    # Mostra todos os albuns registados
+    print("Álbuns Existentes:")
+    cur.execute("SELECT * FROM album ORDER BY ID;")
+    for linha in cur.fetchall():
+        print("ID:", linha[0], " | Nome:", linha[1])
 
-        # CASO A MUSICA DO NOVO ALBUM JA FOI REGISTADO EM UM ALBUM ANTERIOR
-        if(r == 1):
-            b=1
-            n=0
-            while b:
+    # Verifica se digitou o id certo
+    ida = eval(input("Insira o albumID: "))
+    cur.execute("SELECT count(*) FROM album WHERE id = %s;", (ida,))
+    f = cur.fetchone()[0]
+    while (f == 0):
+        z = '0'
+        z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+        if z == '0':
+            return
+        ida = eval(input("Insira o albumID: "))
+        cur.execute("SELECT count(*) FROM album WHERE id = %s;", (ida,))
+        f = cur.fetchone()[0]
 
-                # VAI PROCURAR O NOME DA MUSICA NA BASE DE DADOS
-                nome = input("Digite o nome da musica: ")
-                cur.execute("SELECT count(*) FROM musica WHERE musica = %s", (nome, ))
-                q = cur.fetchone()[0]
 
-                # CASO NAO ENCONTRAR A MUSICA NA BASE DE DADOS
-                if(q == 0):
-                    print("Não existe musica com este nome.")
-                    b = 1
+    print("\nJá existe uma musica do album de ID", ida, "registado?")
+    print("1 - SIM\n2 - NAO\n3 - VOLTAR")
+    r = input('')
 
-                # VAI IMPRIMIR NA TELA O ID DA MUSICA QUE TENHA ENCONTRADO
-                else:
-                    b=0
-                    cur.execute("SELECT id, musica FROM musica WHERE musica = %s;",(nome,))
+    # CASO A MUSICA DO NOVO ALBUM JA FOI REGISTADO EM UM ALBUM ANTERIOR
+    if (r == '1'):
+        idm = 0
+        b = 1
+        n = 0
+        while b:
+
+            # VAI PROCURAR O NOME DA MUSICA NA BASE DE DADOS
+            nome = input("Digite o nome da música: ")
+            cur.execute("SELECT count(*) FROM musica WHERE musica = %s", (nome,))
+            q = cur.fetchone()[0]
+
+            # CASO NAO ENCONTRAR A MUSICA NA BASE DE DADOS
+            if (q == 0):
+                print("Não existe música com este nome.")
+                b = 1
+                z = '0'
+                z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+                if z == '0':
+                    return
+
+            # VAI IMPRIMIR NA TELA O ID DA MUSICA QUE TENHA ENCONTRADO
+            else:
+                idm=0
+                if(q != 1):
+                    cur.execute("SELECT id, musica FROM musica WHERE musica = %s;", (nome,))
                     for linha in cur.fetchall():
-                        imprime(linha)
+                        print("ID:", linha[0], " | Nome:", linha[1])
 
-                    n = input("Digite o ID da musica: ")
+                    # Verifica se digitou o id certo
+                    idm = input("Digite o ID da musica: ")
+                    cur.execute("SELECT count(*) FROM musica WHERE id = %s;", (idm,))
+                    h = cur.fetchone()[0]
+                    while (h == 0):
+                        z = '0'
+                        z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+                        if z == '0':
+                            return
+                        idm = input("Digite o ID da musica: ")
+                        cur.execute("SELECT count(*) FROM musica WHERE id = %s;", (idm,))
+                        h = cur.fetchone()[0]
+                    b=0
 
-            # VAI PROCURAR ULTIMO ALBUM REGISTADO E ADICIONAR OS IDS NA TABELA MUSICA_ALBUM
-            cur.execute("SELECT MAX(id) FROM album")
-            id_a = cur.fetchone()[0]
+                # Existe só um
+                else:
+                    cur.execute("SELECT id FROM musica WHERE musica = %s;", (nome,))
+                    idm = cur.fetchone()[0]
+                    b = 0
 
-            cur.execute("INSERT INTO musica_album values (%s,%s)", (n, id_a))
-            conn.commit()
 
-        # CASO SEJA UMA NOVA MUSICA NA BASE DE DADOS
-        elif(r == 2):
+        cur.execute("INSERT INTO musica_album values (%s,%s)", (idm, ida))
+        conn.commit()
 
-            Nome = input("Nome da Musica: ")
+    # CASO SEJA UMA NOVA MUSICA NA BASE DE DADOS
+    elif (r == '2'):
 
-            # PROCURA ULTIMO ID DE MUSICA REGISTADO E ADICIONA A MUSICA NO PROXIMO
-            cur.execute("SELECT MAX(id) FROM musica")
-            id_m = cur.fetchone()[0]
+        Nome = input("Nome da Música: ")
 
-            # VERIFICA SE NAO TEM NENHUMA MUSICA REGISTADO
-            if(id_m is None):
-                id_m = 0
+        # PROCURA ULTIMO ID DE MUSICA REGISTADO E ADICIONA A MUSICA NO PROXIMO
+        cur.execute("SELECT MAX(id) FROM musica")
+        id_m = cur.fetchone()[0]
 
-            id_m += 1
-            cur.execute("INSERT INTO musica values (%s,%s)", (id_m, Nome, ))
-            conn.commit()
+        # VERIFICA SE NAO TEM NENHUMA MUSICA REGISTADO
+        if (id_m is None):
+            id_m = 0
+        id_m += 1
+        cur.execute("INSERT INTO musica values (%s,%s)", (id_m, Nome,))
+        conn.commit()
 
-            # PROCURA ULTIMO ID DE ALBUM REGISTADO E SALVA O ID DO ALBUM E DA MUSICA NA TABELA MUSICA_ALBUM
-            cur.execute("SELECT MAX(id) FROM album")
-            id_a = cur.fetchone()[0]
-            cur.execute("INSERT INTO musica_album values (%s,%s)", (id_m,id_a))
-            conn.commit()
 
-        # CASO O UTILIZADOR TENHA DIGITADO ALGO DIFERENTE DE 1 E 2
-        else:
-            print("Opcao nao valida")
+        cur.execute("INSERT INTO musica_album values (%s,%s)", (id_m, ida))
+        conn.commit()
 
-        # CASO O UTILIZADOR NAO QUEIRA INSERIR MAIS MUSICAS NESTE ALBUM
-        a = input("Insere 0 para voltar: ")
+    # CASO O UTILIZADOR TENHA DIGITADO ALGO DIFERENTE DE 1 E 2
+    elif (r == '3'):
+        print('\n')
+        return
+
+    else:
+        print('\n')
+        print("Opção não válida")
+        adicionar_musica(conn,cur)
+
