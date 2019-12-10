@@ -1,5 +1,4 @@
 import funcaoData
-
 # REGISTO DO CLIENTE
 # São pedidos ao usuario que insira seus dados como nome, password, email e data de nascimento
 # Para o email é verificado se existe outro usuario que ja tenha inserido certo dado e tambem é verificado se o campo nao esta vazio
@@ -7,7 +6,8 @@ import funcaoData
 # Para a data de nascimento é chamado a funcaoData que recolhe as informacoes e organiza no formato.
 
 def func(conn,cur):
-    print("\nRegistar-se")
+    print("\n")
+    print("REGISTAR-SE")
     a = 1
     b = 1
 
@@ -54,6 +54,6 @@ def func(conn,cur):
     else:
         k+=1
 
-    print("Cliente Registado.\n")
+    print("Cliente Registado.")
     cur.execute("INSERT INTO cliente (id, nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,%s,20)", (k,nome,senha, email, data))
     conn.commit()
