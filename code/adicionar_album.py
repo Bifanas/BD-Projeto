@@ -4,14 +4,68 @@ import add_artista
 
 # ADICIONAR ALBUM À BASE DE DADOS
 def func(conn, cur):
-    print('\nAdicionar album')
+    x = '0'
+    while x != '5':
+        print('\n')
+        print('ADICIONAR ÁLBUM')
 
+        print('Prima a opção que desejar:\n1 - Novo álbum\n2-  Adicionar música\n3 - Adicionar gênero\n4 - Adicionar artista\n5 - Voltar')
+        x = input('')
+
+        if x == '1':
+            add_album(conn,cur)
+
+        elif x == '2':
+            add_musica.adicionar_musica(conn, cur)
+
+        elif x == '3':
+            add_genero.adicionar_genero(conn, cur)
+
+        elif x == '4':
+            add_artista.adicionar_artista(conn, cur)
+
+        elif x == '5':
+            print('\n')
+            print("Voltar")
+
+        else:
+            print('\n')
+            print("Opção não válida")
+
+
+def add_album(conn,cur):
     # DADOS DO ALBUM PEDIDOS
-    nome = input("Digite o nome do novo album: ")
-    duracao = input("Duracao do Album: ")
-    Stock = eval(input("Quantidade em stock: "))
-    Preco = eval(input("Preco: "))
-    ano = eval(input("Ano: "))
+    print("\n")
+    print("NOVO ÁLBUM")
+    nome = input("Digite o nome do novo álbum: ")
+    duracao = input("Duração do Album: ")
+
+    # Valor do stock que quer adicionar
+    s = 0
+    while (s == 0):
+        stock = input("Quantidade em stock: ")
+        if (stock >= '' and stock <= '/' or stock >= ':' or stock == None):
+            s = 0
+        else:
+            s = eval(stock)
+
+    # Valor do saldo que quer adicionar
+    p = 0
+    while (p == 0):
+        preco= input("Preço: ")
+        if (preco >= '' and preco <= '/' or preco >= ':' or preco == None):
+            p = 0
+        else:
+            p = eval(preco)
+
+    #Ano de lancamento do album
+    a = 0
+    while (a < 1000):
+        ano = input('Ano: ')
+        if (len(ano) != 4):
+            a = 0
+        else:
+            a = eval(ano)
 
     # PROCURA O ULTIMO ID REGISTADO E ADICIONA O ALBUM NO PROXIMO ID
     cur.execute("SELECT MAX(id) FROM album")
@@ -21,11 +75,9 @@ def func(conn, cur):
     if (id_a is None):
         id_a = 0
     id_a += 1
-    cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s)", (id_a, nome, duracao, ano, Stock, Preco))
+    cur.execute("INSERT INTO album values (%s,%s,%s,%s,%s,%s)", (id_a, nome, duracao, a, s, p))
     conn.commit()
 
-    # FUNCAO QUE PERMITE ADICIONAR MUSICA, ARTISTA E GENERO
-    add_musica.adicionar_musica(conn, cur)
-    add_genero.adicionar_genero(conn, cur)
-    add_artista.adicionar_artista(conn, cur)
-    print("\n")
+
+
+
