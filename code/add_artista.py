@@ -78,6 +78,7 @@ def adicionar_artista(conn, cur):
 
             cur.execute("INSERT INTO artista_album values (%s,%s)", (idart, ida))
             conn.commit()
+            r = input("Prima 3 para sair.")
 
         # CASO SEJA UMU NOVO ARTISTA NA BASE DE DADOS
         elif (r == '2'):
@@ -97,6 +98,7 @@ def adicionar_artista(conn, cur):
 
             cur.execute("INSERT INTO artista_album values (%s,%s)", (idart, ida))
             conn.commit()
+            r = input("Prima 3 para sair.")
 
         # CASO O UTILIZADOR TENHA DIGITADO ALGO DIFERENTE DE 1 E 2
         elif (r == '3'):

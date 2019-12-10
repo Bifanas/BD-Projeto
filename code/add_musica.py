@@ -78,6 +78,7 @@ def adicionar_musica(conn,cur):
 
             cur.execute("INSERT INTO musica_album values (%s,%s)", (idm, ida))
             conn.commit()
+            r = input("Prima 3 para sair.")
 
         # CASO SEJA UMA NOVA MUSICA NA BASE DE DADOS
         elif (r == '2'):
@@ -97,6 +98,7 @@ def adicionar_musica(conn,cur):
 
             cur.execute("INSERT INTO musica_album values (%s,%s)", (id_m, ida))
             conn.commit()
+            r = input("Prima 3 para sair.")
 
         # CASO O UTILIZADOR TENHA DIGITADO ALGO DIFERENTE DE 1 E 2
         elif (r == '3'):
