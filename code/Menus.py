@@ -25,6 +25,8 @@ cur = conn.cursor()
 
 x = '0'  # inicializa o valor de x
 while (True):
+    print('\n')
+    print("MENU INICIAL")
     print('1 - Registar-se\n2 - Login')
     # mostra as opcoes
     x = input('')
@@ -36,7 +38,7 @@ while (True):
     elif x == '2':  # Login
         usuario = '0'
         usuario, id = '0',1
-        print("\n")
+
         # A funcao login retorna o tipo de usuario1
         # Retornar 1 para cliente e 0 para adm
         # -------------------------------------------------------------------------------------
@@ -85,7 +87,9 @@ while (True):
 
             x = '0'  # inicializa o valor de x
             while x != '8':
-                print('Prima a opcao que desejar:\n1 - Adicionar álbum\n2-  Visualiza álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
+                print('\n')
+                print("MENU PRINCIPAL")
+                print('Prima a opção que desejar:\n1 - Adicionar álbum\n2-  Visualizar álbuns\n3 - Corrigir preço\n4 - Remover álbum\n5 - Notificar\n6 - Estatísticas\n7 - Alterar saldo\n8 - Logout')
                 # Mostra as opcoes
                 x = input('')
                 # Obtem a escolha do cliente
@@ -93,7 +97,7 @@ while (True):
                 if x == '1':  # Adiciona Album
                     adicionar_album.func(conn, cur)
 
-                elif x == '2':  # Visualiza albuns
+                elif x == '2':  # Visualiza albuns em stock
                     visualizar_albuns.func(cur)
 
                 elif x == '3':  # Corrigir preco
@@ -112,10 +116,12 @@ while (True):
                     alterar_saldo.func(conn, cur)
 
                 elif x == '8':  # logout
+                    print('\n')
                     print("Logout")
 
                 else:
-                    print("Opcao nao valida")
+                    print('\n')
+                    print("Opção não válida")
 
         # -------------------------------------------------------------------------------------
     else:
