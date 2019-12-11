@@ -51,7 +51,6 @@ def data():
                     if(mes[1] >= '1' and mes <= '9'):
                         b = mes[1]
                         m = eval(b)
-
             else:
                 m = eval(mes)
 
@@ -60,7 +59,7 @@ def data():
         mes = '0' + aux
 
     a = 0
-    while(a < 1900):
+    while(a < 1900 or a > 2019):
         ano = input('Ano: ')
         if(len(ano) != 4):
             a = 0

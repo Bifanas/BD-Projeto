@@ -27,7 +27,7 @@ def func(cur):
             if (s == 0):
                 print("Email ou Password incorretos.")
                 z = '0'
-                z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+                z = input("Prima 0 para sair ou qualquer tecla para tentar novamente: ")
                 if z == '0':
                     print("\n")
                     return '2', None
@@ -49,7 +49,7 @@ def func(cur):
             if (t == 0):
                 print("Email ou Password incorretos.")
                 z = '0'
-                z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+                z = input("Prima 0 para sair ou qualquer tecla para tentar novamente: ")
                 if z == '0':
                     print("\n")
                     return '2', None
@@ -67,7 +67,7 @@ def func(cur):
         else: #Da opcao ao cliente para sair do meunu login
             print("Email ou PassWord incorretos.")
             z ='0'
-            z = input("Prima 0 para sair ou 1 para tentar novamente: ")
+            z = input("Prima 0 para sair ou qualquer tecla para tentar novamente: ")
             if z=='0':
                 print("\n")
                 return '2', None
