@@ -4,9 +4,9 @@ def func(conn,cur,id, nome):
     x = '0'
     while x != '5':
         print("\n")
-        print('Usuario:', nome)
+        print('Usuário:', nome)
         print("ORDENAR POR:")
-        print('1 - Album\n2 - Musica\n3 - Genero Musical\n4 - Grupo\n5 - Retornar')
+        print('1 - Album\n2 - Musica\n3 - Genero Musical\n4 - Grupo\n5 - Voltar')
         # Mostra as opcoes
         x = input('')
 
