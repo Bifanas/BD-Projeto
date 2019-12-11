@@ -8,7 +8,7 @@ def func(conn,cur,id, nome):
         print("ORDENAR POR:")
         print('1 - Album\n2 - Musica\n3 - Genero Musical\n4 - Grupo\n5 - Retornar')
         # Mostra as opcoes
-        x = input('\n')
+        x = input('')
 
         if x == '1':
             ordena_pesquisa.por_album(conn,cur,id, nome)
