@@ -27,7 +27,7 @@ def func(cur,id, nome):
 
 
         elif x == '6':
-            ordena_hostorico.valorGenero(cur,id,nome)
+            ordena_historico.valorGenero(cur,id,nome)
 
         elif x == '7':
             print('\n')
