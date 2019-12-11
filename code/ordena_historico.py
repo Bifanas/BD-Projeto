@@ -96,7 +96,7 @@ def valorGenero(cur,id,nome):
     print("VALOR GASTO POR GENERO MUSICAL ")
     cur.execute("SELECT (count(genero_id) * preco), tipo_genero from genero, album, album_genero, historico_c_album, historico_c, cliente where cliente.id = %s and cliente.id = historico_c.cliente_id and historico_c.id = historico_c_album.historico_c_id and historico_c_album.album_id = album.id and album.id = album_genero.album_id and album_genero.genero_id = genero.id group by tipo_genero, preco;",(id,))
     for linha in cur.fetchall():
-        print(linha[1], '-', linha[0])
+        print(linha[1], '-', round(linha[0], 2))
 
     a='1'
     while a != '0':
