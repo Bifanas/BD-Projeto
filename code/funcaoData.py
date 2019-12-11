@@ -51,7 +51,6 @@ def data():
                     if(mes[1] >= '1' and mes <= '9'):
                         b = mes[1]
                         m = eval(b)
-
             else:
                 m = eval(mes)
 
