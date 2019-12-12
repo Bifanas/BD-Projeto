@@ -26,13 +26,15 @@ def func(cur):
         d = 0
     print("\nValor Total das Vendas: ", d)
 
+
     # TOTAL DE DISCOS POR GENERO MUSICAL
-    cur.execute("SELECT count(genero.id) FROM genero;")
+
+    #procedimento q foi pedido
+    cur.execute("SELECT quantidade_generos();")
     f = cur.fetchone()[0]
     print("\nTotal de Gêneros: ", f)
 
-    cur.execute(
-        "SELECT genero_id, tipo_genero ,stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id order by genero_id asc")
+    cur.execute("SELECT genero_id, tipo_genero ,stock from genero, album, album_genero where genero.id = album_genero.genero_id and album_genero.album_id = album.id order by genero_id asc")
     print("\nTotal de Discos Por Gênero Musical: ")
     stock = [0] * f  # inicializa um array vazio com a quantidade de generos
     genero = ['vazio'] * f  # inicialisa um array vasio com a quantidade de nomes
