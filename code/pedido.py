@@ -21,7 +21,7 @@ def func(conn,cur, id, nome):
                 print("ID:", linha[0], " | Nome:", linha[1], " | Preço:", linha[2] )
 
 
-        print('1 - Adicionar album\n2 - Remover album\n3 - Finalizar compras\n4 - Retornar')
+        print('1 - Adicionar album\n2 - Remover album\n3 - Finalizar compras\n4 - Voltar')
         x = input('')
 
         if x == '1':
