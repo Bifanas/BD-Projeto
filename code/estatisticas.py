@@ -13,11 +13,30 @@ def func(cur):
     print("\nTotal de Discos: ", b)
 
     # VALOR TOTAL DOS DISCOS EM STOCK
-    cur.execute("SELECT SUM(preco) FROM album WHERE  stock > 0;")
-    c = cur.fetchone()[0]
-    if (c is None):
-        c = 0
-    print("\nValor Total de Discos em Stock: ", c)
+    cur.execute("SELECT count(id) FROM album WHERE stock > 0;")
+    k = cur.fetchone()[0]
+
+    if (k == 0):
+        print("\nValor Total de Discos em Stock: ", k)
+
+    else:
+        b=1
+        preco = 0
+        f = 0
+
+        while b <= k:
+            cur.execute("SELECT stock FROM album WHERE stock > 0 and id = %s;", (b,))
+            c = cur.fetchone()[0]
+
+            cur.execute("SELECT preco FROM album WHERE stock > 0 and id =%s;", (b,))
+            d = cur.fetchone()[0]
+
+            f = c*d
+            preco += f
+            b += 1
+        print("\nValor Total de Discos em Stock: ", preco)
+
+
 
     # VALOR TOTAL DAS VENDAS
     cur.execute("SELECT SUM (preco) FROM historico_c_album, album WHERE album.id = historico_c_album.album_id;")
