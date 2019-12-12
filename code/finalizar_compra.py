@@ -1,6 +1,6 @@
 import datetime
 
-def finalizar(conn, cur, id):
+def finalizar(conn, cur, id, nome):
     # Regista o saldo do cliente disponivel
     cur.execute("SELECT saldo FROM cliente WHERE id = %s;", (id,))
     saldo = cur.fetchone()[0]
