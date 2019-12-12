@@ -37,6 +37,7 @@ def func(conn,cur, id, nome):
             if (q == 0):
                 print("Nao é possivel finalizar compras pois não há álbum no carrinho.")
             else:
+
                 finalizar_compra.finalizar(conn, cur, id, nome)
 
         elif x == '4':
