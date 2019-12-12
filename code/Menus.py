@@ -37,7 +37,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = '1',1 #login.func(cur)
+        usuario, id = '0',1 #login.func(cur)
 
         # A funcao login retorna o tipo de usuario1
         # Retornar 1 para cliente e 0 para adm
@@ -62,21 +62,21 @@ while (True):
                 # Obtem a escolha do cliente
 
                 if x == '1':  # Carrinho
-                    print('\nUsuario:', nome)
-                    print('CARRINHO')
-                    pedido.func(conn, cur, id)
+                    pedido.func(conn, cur, id, nome)
+
                 elif x == '2':  # Pesquisa
-                    print('\nUsuario:', nome)
-                    print('Pesquisa')
-                    pesquisar.func(conn,cur, id)
+                    pesquisar.func(conn,cur, id, nome)
+
                 elif x == '3':  # Historico de compras
                     historico_compras.func(cur,id, nome)
+
                 elif x == '4':  # Notificacao
                     notificacao_cliente.func(conn, cur, id, nome)
+
                 elif x == '5':  # Logout
                     print('Logout')
                 else:
-                    print("\nOpção não válida.")
+                    print("Opção não válida.")
 
         # -------------------------------------------------------------------------------------
         elif (usuario == '0'):

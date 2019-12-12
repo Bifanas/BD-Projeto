@@ -16,7 +16,7 @@ def func(conn,cur, id, nome):
             print("Carrinho está vazio.")
 
         else:
-            cur.execute("SELECT album_id, nome, preco FROM pedido, album WHERE cliente_id = %s and album_id = album.id;",(id,))
+            cur.execute("SELECT album_id, nome, preco FROM pedido, album WHERE cliente_id = %s and album_id = album.id ORDER BY album.id asc;",(id,))
             for linha in cur.fetchall():
                 print("ID:", linha[0], " | Nome:", linha[1], " | Preço:", linha[2] )
 

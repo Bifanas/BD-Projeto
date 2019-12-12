@@ -1,6 +1,10 @@
 import datetime
 
 def finalizar(conn, cur, id, nome):
+    print("\n")
+    print('Usuario:', nome)
+    print('FINALIZAR COMPRAS')
+
     # Regista o saldo do cliente disponivel
     cur.execute("SELECT saldo FROM cliente WHERE id = %s;", (id,))
     saldo = cur.fetchone()[0]
@@ -75,4 +79,7 @@ def finalizar(conn, cur, id, nome):
             cur.execute("SELECT count(album_id) FROM pedido WHERE cliente_id = %s;", (id,))
             p = cur.fetchone()[0]
 
-        print("Albuns comprados.")
+        print("\nAlbuns comprados.")
+        cur.execute("SELECT saldo FROM cliente WHERE id = %s;", (id,))
+        saldo = cur.fetchone()[0]
+        print("Saldo atualizado: ", saldo)

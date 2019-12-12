@@ -50,18 +50,19 @@ def func(cur):
     # ALBUNS MAIS VENDIDOS E QUANTIDADE
     print("\nÁlbuns Mais Vendidos e Quantidades: ")
     cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
-    a = 0
-    while a < 5:
+
+    a = 1
+    while (a != 5):
         for linha in cur.fetchall():
+            a = a + 1
             print(" . Nome:", linha[0], " | Quant:", linha[1])
-        a += 1
+
 
     # ALBUNS QUE NAO TEM EM STOCK
     print("\nÁlbuns Indisponíveis : ")
     cur.execute("SELECT * FROM album WHERE stock = 0 ORDER BY ID;")
     for linha in cur.fetchall():
-        print(" . ID:", linha[0], " | Nome:", linha[1], " | Stock: ",
-              linha[4], " | Preço: ", linha[5])
+        print(" . ID:", linha[0], " | Nome:", linha[1], " | Stock: ", linha[4], " | Preço: ", linha[5])
 
     print('')
     # Enquanto o adm nao inserir 0 para voltar ao menu ficará vendo as estatisticas
