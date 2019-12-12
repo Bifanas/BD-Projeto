@@ -36,7 +36,8 @@ INSERT INTO album_genero VALUES (10,5);
 
 INSERT INTO artista VALUES (1, 'artista1');
 INSERT INTO artista VALUES (2, 'artista2');
-INSERT INTO artista VALUES (3, 'artista3');INSERT INTO artistaVALUES (4, 'artista4');
+INSERT INTO artista VALUES (3, 'artista3');
+INSERT INTO artistaVALUES  (4, 'artista4');
 INSERT INTO artista VALUES (5, 'artista5');
 
 INSERT INTO artista_album VALUES (1, 1);
