@@ -1,60 +1,112 @@
-def imprime(linha):
-    print(' - '.join(map(str, linha)))
+
 
 #Adicionar album no carrinho
-def add(conn, cur,id):
-    add = 's'
-
-    #Verifica se o cliente quer adicionar album no carrinho
-    while (add == 'S' or add == 's'):
-
-        #Permite ao cliente ver o id do album que quer adicionar ao carrinho
-        v = input("Deseja ver os album em stock? [s/n]")
-        while(v == 's' or v == 'S'):
+def add(conn, cur,id,nome):
+    x = '1'
+    while(x != '2'):
+        if (x == '1'):
+            print('\n')
+            print('Usuario:', nome)
+            print('ADICIONAR ALBUM AO CARRINHO')
             cur.execute("SELECT id, nome, preco FROM album WHERE stock > 0;", (id,))
             for linha in cur.fetchall():
-                imprime(linha)
-            v = 'n'
-        #Pede q o cliente insira o respectivo id
-        i = eval(input("Digite o ID do album: "))
+                print("ID: ", linha[0], " | Nome:", linha[1], " | Preço:", linha[2])
 
-        #Verifica se o album tem em stock
-        cur.execute("SELECT stock FROM album WHERE id = %s;", (i,))
-        q = cur.fetchone()[0]
-        if(q<1):
-            print("Album indisponivel")
+            # Pede q o cliente insira o respectivo id
+            i = input("Digite o ID do album: ")
+            while (i[0] < '1' or i[0] > '9'):
+                i = input("Digite o id do álbum: ")
 
-        #Insere no pedido o album e o cliente
+            i = eval(i)
+
+            # Verifica se o album tem em stock
+            cur.execute("SELECT count(stock) FROM album WHERE id = %s;", (i,))
+            q = cur.fetchone()[0]
+
+            while (q == 0):
+                print("Não existe este ID.")
+                i = input("Digite o id do álbum: ")
+
+                while (i[0] < '1' or i[0] > '9'):
+                    i = input("Digite o id do álbum: ")
+
+                i = eval(i)
+
+                cur.execute("SELECT count(stock) FROM album WHERE id = %s;", (i,))
+                q = cur.fetchone()[0]
+
+            if (q < 1):
+                print("Album indisponivel")
+
+            # Insere no pedido o album e o cliente
+            else:
+                cur.execute("INSERT INTO pedido VALUES (%s,%s);", (id, i))
+                conn.commit()
+
+                # Mostra total de compras
+                cur.execute("SELECT SUM(preco) FROM pedido, album WHERE cliente_id = %s and album_id = album.id;",
+                            (id,))
+                print("Valor Total No Carrinho: ", cur.fetchone()[0])
+
+            print("Deseja adicionar outro album no carrinho? ")
+            print("1 - SIM\n2 - NAO")
+            x = input('')
+
+        elif (x == '2'):
+            return
+
         else:
-            cur.execute("INSERT INTO pedido VALUES (%s,%s);", (id,i))
-            conn.commit()
-
-            #Mostra total de compras
-            cur.execute("SELECT SUM(preco) FROM pedido, album WHERE cliente_id = %s and album_id = album.id;", (id,))
-            print("Valor Total No Carrinho: ", cur.fetchone()[0])
-
-        add = input("Deseja adicionar outro album no carrinho? [s/n]")
+            print("Opção não válida.")
 
 
 # Remover album do carrinho
-def rem(conn,cur,id):
-    remover = 's'
+def rem(conn,cur,id,nome):
+    print('\n')
+    print('Usuario:', nome)
+    print('REMOVER ALBUM AO CARRINHO')
 
-    #Verifica se quer remover do pedido
-    while (remover == 's' or remover == 'S'):
+    x = '1'
+    while (x != '2'):
+        if(x == '1'):
+            #Mostra os pedidos no carrinho
+            cur.execute("SELECT album_id, nome, preco FROM pedido, album WHERE cliente_id = %s and album_id = album.id;",(id,))
+            for linha in cur.fetchall():
+                print("ID:", linha[0], "Nome:", linha[1], "Preço:", linha[2])
 
-        #Mostra os pedidos no carrinho
-        cur.execute("SELECT album_id, nome, preco FROM pedido, album WHERE cliente_id = %s and album_id = album.id;",(id,))
-        for linha in cur.fetchall():
-            imprime(linha)
+                # Pede q o cliente insira o respectivo id
+                i = input("Digite o ID do album: ")
+                while (i[0] < '1' or i[0] > '9'):
+                    print("Não existe este ID.")
+                    i = input("Digite o id do álbum: ")
 
-        #Pede o id e deleta do carrinho
-        n = eval(input("Insira o albumID: "))
-        cur.execute("DELETE FROM pedido WHERE cliente_id = %s and album_id = %s;", (id, n))
-        conn.commit()
+                i = eval(i)
 
-        #Mostra total no carrinho
-        cur.execute("SELECT SUM(preco) FROM pedido, album WHERE cliente_id = %s and album_id = album.id;", (id,))
-        print("Valor Total: ", cur.fetchone()[0])
+                # Verifica se o album tem em stock
+                cur.execute("SELECT count(stock) FROM album WHERE id = %s;", (i,))
+                q = cur.fetchone()[0]
 
-        remover = input("Deseja remover outro album no carrinho? [s/n]")
+                while (q == 0):
+                    print("Não existe este ID.")
+                    i = input("Digite o id do álbum: ")
+
+                    while (i[0] < '1' or i[0] > '9'):
+                        i = input("Digite o id do álbum: ")
+
+                    i = eval(i)
+
+                    cur.execute("SELECT count(stock) FROM album WHERE id = %s;", (i,))
+                    q = cur.fetchone()[0]
+
+            cur.execute("DELETE FROM pedido WHERE cliente_id = %s and album_id = %s;", (id, i))
+            conn.commit()
+
+            #Mostra total no carrinho
+            cur.execute("SELECT SUM(preco) FROM pedido, album WHERE cliente_id = %s and album_id = album.id;", (id,))
+            s = cur.fetchone()[0]
+            if (s is not None):
+                print("\nValor Total: ", cur.fetchone()[0])
+
+            else:
+                print("\nCarrinho vazio.")
+
+        return
