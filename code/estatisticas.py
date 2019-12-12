@@ -48,10 +48,10 @@ def func(cur):
     # ESTATISTICAS EXTRAS:
 
     # ALBUNS MAIS VENDIDOS E QUANTIDADE
-    print("\nÁlbuns Mais Vendidos e Quantidades: ")
+    print("\nÁlbum Mais Vendido e Quantidade: ")
     cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
-    for linha in cur.fetchall():
-        print(" . Nome:", linha[0], " | Quant:", linha[1])
+    linha = cur.fetchone()
+    print(" . Nome:", linha[0], " | Quant:", linha[1])
 
 
     # ALBUNS QUE NAO TEM EM STOCK
