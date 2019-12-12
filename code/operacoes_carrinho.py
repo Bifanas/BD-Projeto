@@ -35,6 +35,14 @@ def add(conn, cur,id,nome):
                 cur.execute("SELECT count(stock) FROM album WHERE id = %s;", (i,))
                 q = cur.fetchone()[0]
 
+
+            #Verifica se o cliente ja colocou este album no carrinho
+            cur.execute("SELECT count(album_id) FROM pedido WHERE album_id = %s;", (i,))
+            l = cur.fetchone()[0]
+            if(l == 1):
+                print("Álbum já inserido no carrinho.")
+                return
+
             if (q < 1):
                 print("Album indisponivel")
 
