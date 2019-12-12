@@ -54,6 +54,24 @@ def func(conn,cur):
     else:
         k+=1
 
-    print("Cliente Registado.")
-    cur.execute("INSERT INTO cliente (id, nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,%s,20)", (k,nome,senha, email, data))
-    conn.commit()
+    print("\n")
+    print("CONFIRMAÇÃO DOS DADOS INSERIDOS")
+    print("Nome:", nome)
+    print("Email:", email)
+    print("Data de Nascimento:", data)
+    print("1 - Confirmar\n2 - Corrigir\n3 - Voltar")
+    a = input('')
+
+    if(a == '1'):
+        cur.execute("INSERT INTO cliente (id, nome, password, email, data_nascimento, saldo) values (%s,%s,%s,%s,%s,20)", (k,nome,senha, email, data))
+        conn.commit()
+        print("Cliente Registado.")
+
+    elif(a == '2'):
+        func(conn,cur)
+
+    elif(a == '3'):
+        return
+
+    else:
+        print("Opção não válida.")

@@ -2,8 +2,8 @@ def func(cur):
     a = 1
     b = 1
     while a:
-
-        print("\nLogin")
+        print("\n")
+        print("LOGIN")
 
         while b:
             email = input("Email: ")
@@ -29,7 +29,6 @@ def func(cur):
                 z = '0'
                 z = input("Prima 0 para sair ou qualquer tecla para tentar novamente: ")
                 if z == '0':
-                    print("\n")
                     return '2', None
                 else:
                     b =1
@@ -38,7 +37,6 @@ def func(cur):
                 b=0
                 cur.execute("SELECT id FROM administrador WHERE password = %s and email = %s;",(senha, email))
                 id = cur.fetchone()[0]
-                print("\n")
                 return '0', id
 
         #Cliente
@@ -51,7 +49,6 @@ def func(cur):
                 z = '0'
                 z = input("Prima 0 para sair ou qualquer tecla para tentar novamente: ")
                 if z == '0':
-                    print("\n")
                     return '2', None
                 else:
                     b =1
@@ -60,7 +57,6 @@ def func(cur):
                 b=0
                 cur.execute("SELECT id FROM cliente WHERE password = %s and email = %s;",(senha, email))
                 id = cur.fetchone()[0]
-                print("\n")
                 return '1', id
 
 
@@ -69,7 +65,6 @@ def func(cur):
             z ='0'
             z = input("Prima 0 para sair ou qualquer tecla para tentar novamente: ")
             if z=='0':
-                print("\n")
                 return '2', None
             else:
                 b=1
