@@ -17,17 +17,18 @@ import historico_compras
 import notificacao_cliente
 
 import psycopg2
-conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
-cur = conn.cursor()
-
 # Menu inicial
 # inicia o programa que fica ativo ate que o usuario feche-o
 
 x = '0'  # inicializa o valor de x
-while (True):
+while (x != '3'):
+
+    conn = psycopg2.connect("host=localhost dbname=postgres user=postgres password=postgres")
+    cur = conn.cursor()
+
     print('\n')
     print("MENU INICIAL")
-    print('1 - Registar-se\n2 - Login')
+    print('1 - Registar-se\n2 - Login\n3 - Sair')
     # mostra as opcoes
     x = input('')
     # Obtem a escolha do cliente
@@ -120,7 +121,11 @@ while (True):
                 else:
                     print('\n')
                     print("Opção não válida")
-
-        # -------------------------------------------------------------------------------------
+    elif x == '3':
+        print('Saiu')
+    # -------------------------------------------------------------------------------------
     else:
         print("Opção não válida")
+
+    cur.close()
+    conn.close()
