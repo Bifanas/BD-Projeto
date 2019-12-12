@@ -1,30 +1,34 @@
 import add_musica
 import add_genero
 import add_artista
+import corrigir_stock
 
 # ADICIONAR ALBUM À BASE DE DADOS
 def func(conn, cur):
     x = '0'
-    while x != '5':
+    while x != '6':
         print('\n')
         print('ADICIONAR ÁLBUM')
 
-        print('Prima a opção que desejar:\n1 - Novo álbum\n2-  Adicionar música\n3 - Adicionar gênero\n4 - Adicionar artista\n5 - Voltar')
+        print('Prima a opção que desejar:\n1 - Novo álbum\n2-  Álbum existente\n3 - Adicionar música\n4 - Adicionar gênero\n5 - Adicionar artista\n6 - Voltar')
         x = input('')
 
         if x == '1':
             add_album(conn,cur)
 
         elif x == '2':
-            add_musica.adicionar_musica(conn, cur)
+            corrigir_stock.func(conn, cur)
 
         elif x == '3':
-            add_genero.adicionar_genero(conn, cur)
+            add_musica.adicionar_musica(conn, cur)
 
         elif x == '4':
-            add_artista.adicionar_artista(conn, cur)
+            add_genero.adicionar_genero(conn, cur)
 
         elif x == '5':
+            add_artista.adicionar_artista(conn, cur)
+
+        elif x == '6':
             print('\n')
             print("Voltar")
 

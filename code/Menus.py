@@ -37,7 +37,7 @@ while (True):
 
     elif x == '2':  # Login
         usuario = '0'
-        usuario, id = login.func(cur)
+        usuario, id = '0',1 #login.func(cur)
 
         # A funcao login retorna o tipo de usuario1
         # Retornar 1 para cliente e 0 para adm
