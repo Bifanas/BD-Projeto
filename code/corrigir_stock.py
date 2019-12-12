@@ -2,7 +2,7 @@ def func(conn,cur):
     print("\n")
     print("CORRIGIR STOCK")
 
-    cur.execute("SELECT count(id) FROM album WHERE stock < 0;")
+    cur.execute("SELECT count(id) FROM album WHERE stock <= 0;")
     a = cur.fetchone()[0]
 
     if(a == 0):
