@@ -19,9 +19,11 @@ def finalizar(conn, cur, id, nome):
     if (saldo < valor):
         print("Dinheiro insuficiente.")
 
+    # Cliente tem dinheiro suficiente para a compra
     else:
+
         #Procura ultimo id
-        cur.execute("SELECT MAX(id) FROM historico_c WHERE cliente_id = %s;", (id,))
+        cur.execute("SELECT MAX(id) FROM historico_c;")
         j = cur.fetchone()[0]
 
         if(j is None):
@@ -53,33 +55,44 @@ def finalizar(conn, cur, id, nome):
             # Ve quantos tem em stock e substrai 1
             cur.execute("SELECT stock FROM album WHERE id = %s;", (i,))
             stock = cur.fetchone()[0]
-
             # Insere no historico_c
             cur.execute("INSERT INTO historico_c_album VALUES (%s,%s);", (j, i))
             conn.commit()
 
             stock -= 1
-            cur.execute("UPDATE album SET stock = %s WHERE id = %s;", (stock, i))
-            conn.commit()
+            #Nao há o album em stock
+            if(stock < 0):
+                print("Álbum de id", i, "está indisponivel")
+                # Deleta album comprado do carrinho
+                cur.execute("DELETE FROM pedido WHERE album_id = %s and cliente_id = %s;", (i, id,))
+                conn.commit()
 
-            # Precos do album atual
-            cur.execute("SELECT preco FROM album WHERE id = %s;", (i,))
-            preco = cur.fetchone()[0]
+                # Conta quantos albuns tem no carrinho
+                cur.execute("SELECT count(album_id) FROM pedido WHERE cliente_id = %s;", (id,))
+                p = cur.fetchone()[0]
 
-            # Atualizacao do saldo do cliente
-            s_atual = (saldo-preco)
-            cur.execute("UPDATE cliente SET saldo = %s WHERE id = %s;", (s_atual, id))
-            conn.commit()
+            #Há o album em stock
+            else:
+                cur.execute("UPDATE album SET stock = %s WHERE id = %s;", (stock, i))
+                conn.commit()
 
-            #Deleta album comprado do carrinho
-            cur.execute("DELETE FROM pedido WHERE album_id = %s and cliente_id = %s;", (i, id,))
-            conn.commit()
+                # Precos do album atual
+                cur.execute("SELECT preco FROM album WHERE id = %s;", (i,))
+                preco = cur.fetchone()[0]
 
-            #Conta quantos albuns tem no carrinho
-            cur.execute("SELECT count(album_id) FROM pedido WHERE cliente_id = %s;", (id,))
-            p = cur.fetchone()[0]
+                # Atualizacao do saldo do cliente
+                s_atual = (saldo-preco)
+                cur.execute("UPDATE cliente SET saldo = %s WHERE id = %s;", (s_atual, id))
+                conn.commit()
 
-        print("\nAlbuns comprados.")
+                #Deleta album comprado do carrinho
+                cur.execute("DELETE FROM pedido WHERE album_id = %s and cliente_id = %s;", (i, id,))
+                conn.commit()
+
+                #Conta quantos albuns tem no carrinho
+                cur.execute("SELECT count(album_id) FROM pedido WHERE cliente_id = %s;", (id,))
+                p = cur.fetchone()[0]
+
         cur.execute("SELECT saldo FROM cliente WHERE id = %s;", (id,))
         saldo = cur.fetchone()[0]
         print("Saldo atualizado: ", saldo)
