@@ -33,13 +33,9 @@ INSERT INTO genero VALUES (4, 'classica');
 INSERT INTO genero VALUES (5,'gospel');
 
 INSERT INTO album_genero VALUES (1,1);
-INSERT INTO album_genero VALUES (1,2);
 INSERT INTO album_genero VALUES (2,2);
-INSERT INTO album_genero VALUES (2,3);
 INSERT INTO album_genero VALUES (3,3);
-INSERT INTO album_genero VALUES (3,4);
 INSERT INTO album_genero VALUES (4,4);
-INSERT INTO album_genero VALUES (4,5);
 INSERT INTO album_genero VALUES (5,5);
 
 INSERT INTO artista VALUES (1, 'artista1');
@@ -65,53 +61,3 @@ INSERT INTO musica_Album VALUES (2,2);
 INSERT INTO musica_Album VALUES (3,3);
 INSERT INTO musica_Album VALUES (4,4);
 INSERT INTO musica_Album VALUES (5,5);
-
-INSERT INTO historico_c
-VALUES(1, '2010-02-02', 1);
-
-INSERT INTO historico_c
-VALUES(2, '2010-02-02', 1);
-
-INSERT INTO historico_c
-VALUES(3, '2010-02-02', 2);
-
-INSERT INTO historico_c
-VALUES(4, '2010-02-02', 3);
-
-INSERT INTO historico_c
-VALUES(5, '2010-02-02', 4);
-
-INSERT INTO historico_c
-VALUES(6, '2010-02-02', 5);
-
-INSERT INTO historico_c_album
-VALUES(1, 1);
-
-INSERT INTO historico_c_album
-VALUES(2, 1);
-
-INSERT INTO historico_c_album
-VALUES(3, 2);
-
-INSERT INTO historico_c_album
-VALUES(4, 3);
-
-INSERT INTO historico_c_album
-VALUES(5, 4);
-
-INSERT INTO historico_c_album
-VALUES(6, 5);
-
-delete from historico_a;
-delete from album_genero;
-delete from musica_album;
-delete from artista_album;
-delete from artista;
-delete from genero;
-delete from musica;
-delete from c_entrada;
-delete from notificacao;
-delete from historico_c_album;
-delete from historico_c;
-delete from pedido;
-delete from album;
