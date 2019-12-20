@@ -70,9 +70,14 @@ def func(cur):
 
     # ALBUNS MAIS VENDIDOS E QUANTIDADE
     print("\nÁlbum Mais Vendido e Quantidade: ")
-    cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
-    linha = cur.fetchone()
-    print(" . Nome:", linha[0], " | Quant:", linha[1])
+    cur.execute("select count(*) from historico_c;")
+    w = cur.fetchone()[0]
+    if (w == 0):
+        print("Nenhum album foi vendido.")
+    else:
+        cur.execute("SELECT nome, count(historico_c_album.album_id) FROM  historico_c_album, album WHERE album.id = historico_c_album.album_id GROUP BY nome ORDER BY count(nome) DESC;")
+        linha = cur.fetchone()
+        print(" . Nome:", linha[0], " | Quant:", linha[1])
 
 
     # ALBUNS QUE NAO TEM EM STOCK

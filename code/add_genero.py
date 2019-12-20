@@ -36,7 +36,7 @@ def adicionar_genero(conn, cur):
 
                 # VAI PROCURAR O NOME DO gênero NA BASE DE DADOS
                 nome = input("Digite o nome do gênero: ")
-                cur.execute("SELECT count(*) FROM genero WHERE tipo_gênero = %s", (nome,))
+                cur.execute("SELECT count(*) FROM genero WHERE tipo_genero = %s", (nome,))
                 q = cur.fetchone()[0]
 
                 # CASO NAO ENCONTRAR O gênero NA BASE DE DADOS
@@ -72,7 +72,7 @@ def adicionar_genero(conn, cur):
 
                     # Existe só um
                     else:
-                        cur.execute("SELECT id FROM gênero WHERE tipo_gênero = %s;", (nome,))
+                        cur.execute("SELECT id FROM genero WHERE tipo_genero = %s;", (nome,))
                         idg = cur.fetchone()[0]
                         b = 0
 
